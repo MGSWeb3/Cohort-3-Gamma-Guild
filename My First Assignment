@@ -1,0 +1,191 @@
+# Week 1 Day 2 — Blockchain Infrastructure, Distributed Ledgers, and Tokenized Ownership
+
+**Name:** Hannah Chiemeka  
+**Cohort:** MGS Web3 Cohort 3 — Gamma Guild  
+**Date:** November 2025  
+**Assignment:** Week 1 Day 2 — Blockchain Infrastructure & Ownership  
+
+---
+
+## 🧩 1. Blockchain Infrastructure Research
+
+In this section, I explore **four blockchains** — **Bitcoin, Ethereum, Solana, and Polkadot** — focusing on their **node structure, client implementations, and consensus mechanisms.**
+
+### 🔹 Bitcoin
+- **Nodes:** Full nodes, miners, and lightweight (SPV) nodes.  
+- **Clients:** Bitcoin Core is the most used implementation; other variants exist.  
+- **Consensus Mechanism:** *Proof-of-Work (PoW)* — miners solve cryptographic puzzles to propose blocks.  
+- **Key Features:**  
+  - Uses UTXO (Unspent Transaction Output) model for state tracking.  
+  - Provides strong security and immutability at the cost of slower throughput.  
+- **Reference:** [Bitcoin Whitepaper – Satoshi Nakamoto (2008)](https://bitcoin.org/bitcoin.pdf)
+
+---
+
+### 🔹 Ethereum
+- **Nodes:** Full, Archive, and Validator nodes (post-Merge).  
+- **Clients:**  
+  - **Execution Clients:** Geth, Nethermind, Besu  
+  - **Consensus Clients:** Prysm, Lighthouse, Teku, Nimbus  
+- **Consensus Mechanism:** *Proof-of-Stake (PoS)* — validators propose and attest to blocks instead of mining.  
+- **Key Features:**  
+  - Smart contract platform supporting ERC standards.  
+  - Merge (2022) reduced energy usage by ~99%.  
+- **Reference:** [Ethereum.org — Proof of Stake Overview](https://ethereum.org/en/developers/docs/consensus-mechanisms/pos/)
+
+---
+
+### 🔹 Solana
+- **Nodes:** Validators, RPC nodes, and leaders.  
+- **Clients:** solana-validator (Rust implementation).  
+- **Consensus Mechanism:** Hybrid *Proof-of-History (PoH)* + *Proof-of-Stake (PoS).*  
+- **Key Features:**  
+  - Processes up to 65,000 transactions per second.  
+  - PoH timestamps transactions before validation, improving throughput.  
+- **Reference:** [Solana Docs — Architecture](https://docs.solana.com/cluster/overview)
+
+---
+
+### 🔹 Polkadot
+- **Nodes:**  
+  - **Validators:** secure the relay chain  
+  - **Nominators:** stake DOT to support validators  
+  - **Collators:** maintain parachain blocks  
+- **Clients:** Parity Substrate-based nodes.  
+- **Consensus Mechanism:** *Nominated Proof-of-Stake (NPoS)* combining BABE and GRANDPA protocols.  
+- **Key Features:**  
+  - Enables multi-chain interoperability via parachains.  
+  - Shared security model across connected blockchains.  
+- **Reference:** [Polkadot Docs — NPoS Overview](https://wiki.polkadot.network/docs/learn-npos)
+
+---
+
+### 🧮 Blockchain Comparison Table
+
+| Blockchain | Node Types | Example Clients | Consensus Mechanism | Key Strength |
+|-------------|-------------|-----------------|----------------------|---------------|
+| **Bitcoin** | Full nodes, miners, SPV | Bitcoin Core | Proof-of-Work (PoW) | High security & decentralization |
+| **Ethereum** | Validators, full nodes | Geth, Prysm, Nethermind | Proof-of-Stake (PoS) | Smart contracts, strong dev ecosystem |
+| **Solana** | Validators, RPC, leaders | solana-validator | PoH + PoS hybrid | High throughput & low latency |
+| **Polkadot** | Validators, nominators, collators | Parity Substrate | Nominated PoS (NPoS) | Interoperable parachains |
+
+---
+
+## 🧱 2. Distributed Ledger vs Blockchain
+
+**Distributed Ledger (DLT)** — a shared database replicated across multiple nodes. It doesn’t require data to be stored in blocks or linked by hashes.  
+
+**Blockchain** — a structured form of DLT where transactions are grouped into blocks, cryptographically linked, and secured by consensus mechanisms.
+
+| Feature | Distributed Ledger | Blockchain |
+|----------|--------------------|-------------|
+| **Data structure** | Any replicated database | Linked blocks secured by hashes |
+| **Ordering** | Not always sequential | Strict chronological block order |
+| **Consensus** | Varies (PBFT, Raft, etc.) | Typically PoW or PoS |
+| **Immutability** | Optional | Built-in via cryptographic hashes |
+| **Use cases** | Consortium or enterprise systems | Public decentralized networks |
+
+**Reference:** [Ethereum.org — Consensus Mechanisms Overview](https://ethereum.org/en/developers/docs/consensus-mechanisms/)
+
+---
+
+## 🪙 3. NFTs and Tokens — How Ownership Works
+
+NFTs and tokens represent **digital ownership** recorded on a blockchain. Ownership is proven by the **private key** controlling a wallet address. Transfers occur through smart contract functions.
+
+### 🧩 Token Standards
+| Feature | ERC-20 (Fungible) | ERC-721 (Non-fungible) |
+|----------|------------------|-------------------------|
+| **Replaceability** | Fungible (identical units) | Unique IDs (non-fungible) |
+| **Functions** | `transfer()`, `approve()`, `transferFrom()` | `ownerOf()`, `safeTransferFrom()` |
+| **Metadata** | Same for all tokens | Unique per token ID |
+| **Use Cases** | Stablecoins, governance, utility | Art, collectibles, identity assets |
+| **Standards** | [EIP-20](https://eips.ethereum.org/EIPS/eip-20) | [EIP-721](https://eips.ethereum.org/EIPS/eip-721) |
+
+---
+
+### 🔍 Real-World Examples (NFTs & Tokens)
+
+| Asset | Type | Blockchain | Description | Ownership Mechanism |
+|--------|------|-------------|--------------|----------------------|
+| **CryptoPunks** | NFT | Ethereum | 10,000 unique pixel art characters; early NFT collection | ERC-721 tokens recorded on Ethereum; transfers on-chain |
+| **Bored Ape Yacht Club (BAYC)** | NFT | Ethereum | Profile-picture NFTs with community utility | ERC-721; ownership verified via wallet signature |
+| **NBA Top Shot** | NFT | Flow | Licensed NBA video moments | Flow blockchain smart contracts manage transfers |
+| **USDC** | Fungible Token | Ethereum & others | Dollar-pegged stablecoin | ERC-20; issuer can mint/burn tokens |
+| **Uniswap (UNI)** | Fungible Token | Ethereum | Governance token for Uniswap DAO | ERC-20; ownership grants voting rights |
+| **Decentraland LAND** | NFT | Ethereum | Virtual real estate parcels | ERC-721; ownership defines in-world land control |
+
+---
+
+### ⚙️ How Ownership Transfers Work
+1. **Transfer function** executes within a smart contract (`transferFrom()` or `safeTransferFrom()`).  
+2. Transaction is **signed** by the owner’s private key.  
+3. Blockchain **records the new owner’s address** as the current token holder.  
+4. Ownership changes are transparent and verifiable via block explorers like [Etherscan.io](https://etherscan.io).
+
+**References:**  
+- [EIP-20 — Ethereum Fungible Token Standard](https://eips.ethereum.org/EIPS/eip-20)  
+- [EIP-721 — Ethereum Non-Fungible Token Standard](https://eips.ethereum.org/EIPS/eip-721)  
+- [QuickNode — How NFT Transfers Work](https://www.quicknode.com/guides/web3-sdks/how-to-transfer-an-nft)  
+- [Investopedia — What is an ERC-20 Token?](https://www.investopedia.com/terms/e/erc-20-token.asp)
+
+---
+
+## 🧵 4. Twitter Thread Draft
+
+**Thread Title:** *“Understanding Blockchain Infrastructure and Tokenized Ownership”*
+
+1️⃣ Week 1 Day 2: diving into blockchain infrastructure!  
+I’ll compare 4 blockchains, explain DLTs vs blockchains, and show how NFTs & tokens define digital ownership. 🧵👇  
+
+2️⃣ Bitcoin, Ethereum, Solana & Polkadot — each uses different consensus: PoW, PoS, PoH+PoS, NPoS. Different paths, same goal: trustless validation.  
+
+3️⃣ Distributed Ledger ≠ Blockchain.  
+A DLT is a shared database; a blockchain chains data into immutable blocks secured by cryptography.  
+
+4️⃣ NFTs vs Fungible Tokens — ERC-20s (e.g. USDC) are identical; ERC-721s (e.g. BAYC) are unique. Ownership = on-chain record tied to your wallet.  
+
+5️⃣ How transfers work:  
+Smart contracts call `transferFrom()` or `safeTransferFrom()` — executed by your private key. That’s digital ownership verified!  
+
+6️⃣ Real examples: CryptoPunks, BAYC, NBA Top Shot, USDC, and Uniswap Token. All showcase how value and identity move on-chain.  
+
+7️⃣ To submit: fork the cohort repo, create `/submissions/your-name/week-1/day-2/`, add your markdown, and make a Pull Request before Friday 5 PM.  
+
+#Web3 #Blockchain #MGSWeb3 #NFTs #DeFi
+
+---
+
+## 📚 5. References & Citations (12–15 Sources)
+
+1. [MGS Web3 Cohort 3 — Gamma Guild Repo](https://github.com/MGSWeb3/Cohort-3-Gamma-Guild)  
+2. [Bitcoin Whitepaper (2008)](https://bitcoin.org/bitcoin.pdf)  
+3. [Ethereum.org — Proof of Stake Overview](https://ethereum.org/en/developers/docs/consensus-mechanisms/pos/)  
+4. [Ethereum.org — Consensus Mechanisms](https://ethereum.org/en/developers/docs/consensus-mechanisms/)  
+5. [Solana Docs — Architecture](https://docs.solana.com/cluster/overview)  
+6. [Solana Whitepaper](https://solana.com/solana-whitepaper.pdf)  
+7. [Polkadot Wiki — Nominated Proof of Stake](https://wiki.polkadot.network/docs/learn-npos)  
+8. [EIP-20: ERC-20 Token Standard](https://eips.ethereum.org/EIPS/eip-20)  
+9. [EIP-721: NFT Token Standard](https://eips.ethereum.org/EIPS/eip-721)  
+10. [QuickNode — How to Transfer an NFT](https://www.quicknode.com/guides/web3-sdks/how-to-transfer-an-nft)  
+11. [Investopedia — ERC-20 Definition](https://www.investopedia.com/terms/e/erc-20-token.asp)  
+12. [Ethereum.org — Token Standards](https://ethereum.org/en/developers/docs/standards/tokens/)  
+13. [Flow — NBA Top Shot Overview](https://www.onflow.org/nba-top-shot)  
+14. [Uniswap Docs — Governance](https://docs.uniswap.org/protocol/V2/governance/overview)  
+15. [Etherscan — Example NFT Transfer](https://etherscan.io/token/0x60e4d786628fea6478f785a6d7e704777c86a7c6)
+
+---
+
+## ✅ 6. Summary
+
+This research highlights how **different blockchain architectures** secure decentralized systems, compares **distributed ledgers and blockchains**, and explains how **NFTs and tokens enable verifiable digital ownership.**  
+Each chain’s design represents a trade-off between **security, speed, and decentralization**, while token standards demonstrate **programmable value transfer** — the foundation of Web3.
+
+---
+
+**Submitted by:**  
+🪶 *Hannah Chiemeka*  
+*MGS Web3 Cohort 3 — Gamma Guild*  
+
+
+---
