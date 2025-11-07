@@ -1,3 +1,4 @@
+Blockchain comparison table
 | Blockchain | Node types | Clients / software | Consensus |
 |---|---|---|---|
 | Bitcoin | Full nodes, light nodes, miners | Bitcoin Core | Proof of Work (PoW). :contentReference[oaicite:20]{index=20} |
@@ -5,9 +6,151 @@
 | Solana | Validators, RPC nodes, archival nodes | solana-validator (CLI) | Proof of History (PoH) + PoS (for validator selection). :contentReference[oaicite:22]{index=22} |
 | Polkadot | Validators, nominators, collators | polkadot (Substrate clients) | Nominated Proof of Stake (NPoS). :contentReference[oaicite:23]{index=23} |
 | Avalanche | Validators, full nodes, RPC nodes | AvalancheGo | Avalanche consensus (sub-sampled voting, fast finality). :contentReference[oaicite:24]{index=24} |
+
+Distributed ledger vs Blockchain
 | Feature | Distributed Ledger (DLT) | Blockchain |
 |---|---|---|
 | Definition | Replicated ledger across nodes; can be permissioned | Type of DLT that stores data in cryptographically chained blocks. :contentReference[oaicite:25]{index=25} |
 | Structure | Flexible (not necessarily block-based) | Block-chained structure |
 | Consensus | Many types (permissioned algorithms common) | PoW/PoS/NPoS/others |
 | Use cases | Enterprise, private networks (Hyperledger, Corda) | Public networks, open value transfer (Bitcoin/Ethereum) :contentReference[oaicite:26]{index=26} |
+
+NFTs vs Fungible Tokens
+Key tech concepts
+Fungible tokens are interchangeable units (ERC-20 on Ethereum is standard). They represent currency, utility, or governance. ERC-20 defines the standard API and is used by tokens like USDC, USDT, UNI, BNB (BEP-20 on BSC is Ethereum-compatible).
+NFTs (non-fungible tokens) are unique on-chain identifiers (pair: contract address + tokenId) — common standards: ERC-721, ERC-1155 — used to represent unique digital items, collectibles, or tokenized rights. Ownership is recorded on-chain and transferrable; smart contract code controls provenance, royalties (if implemented), and transfer rules. 
+Ethereum Improvement Proposals
+
+
+Ownership & practical effect
+
+On-chain ownership gives provable, tamper-evident provenance and enables on-chain royalty enforcement (if contract supports it) and marketplace automation.
+
+Ownership ≠ off-chain rights automatically: owning an NFT usually conveys a tokenized right (e.g., a claim, a license, or membership), but underlying copyright/physical property rights depend on the project’s legal terms. This gap is a frequent source of confusion and legal debate. 
+WIRED
+
+Real-world examples (5+), short analysis
+
+Bored Ape Yacht Club (BAYC) — Ethereum
+
+Collection of unique PFP NFTs (ERC-721) with strong secondary market on OpenSea; ownership records are on Ethereum and transfers are immutable and visible. Security incidents (phishing/social engineering) show custody risks remain off-chain. 
+OpenSea
+
+
+Axie Infinity (Axies) — Ronin (EVM sidechain)
+
+Game NFTs (Axies) and in-game economy; Ronin was built to reduce fees & scale gaming transactions. Demonstrates how a specialized chain can enable massive in-game transactions and new economic models for players. 
+AxieInfinity
+
+
+NBA Top Shot — Flow (Dapper Labs)
+
+“Moments” (collectible video highlights) as NFTs on Flow — shows an alternative chain (Flow) optimized for collectibles & UX (account model, scalability for consumer adoption). Ownership tracked on Flow; marketplace & developer tooling provided by Dapper. 
+NBA Top Shot Developers
+
+
+Royal / Music NFTs
+
+Royal allows fans to buy streaming royalties or shares of songs as NFTs — shows how NFTs can tokenize revenue rights and distribute royalties to fractional owners. Legal/royalty structures matter here. 
+Royal
+
+
+Stablecoins / Fungible tokens (USDT, USDC)
+
+USDT (Tether) and USDC (Circle) are fungible stablecoins used as on-chain money (ERC-20/BEP-20/etc.). They show fungible tokens’ role as medium-of-exchange and settlement in NFT markets and DeFi. Their governance and reserve transparency (attestations) affect trust/regulatory treatment. 
+Tether
+
+
+Governance / Utility token example — UNI (Uniswap)
+
+UNI is an ERC-20 governance token; holders vote on protocol upgrades and treasury usage — shows tokenized governance vs. tokenized unique assets. 
+Uniswap Docs
+
+Takeaway: NFTs add unique digital scarcity, provenance, and programmable sale/royalty mechanics — they change the practical meaning of "ownership" for digital goods by enabling verifiable, transferable on-chain claims, but legal rights and custody still require off-chain considerations.
+
+Twitter thread (7 tweets)
+
+🧵 Let’s unpack blockchain infrastructure, distributed ledgers, and how NFTs & tokens change ownership. Quick thread for #Web3 learners. #Blockchain #NFTs
+
+🔹 Blockchains differ a lot. Bitcoin (PoW) secures value, Ethereum now uses PoS with split execution/consensus clients, Solana uses PoH+PoS for speed, Polkadot uses NPoS for cross-chain governance, Avalanche uses sub-sampled voting for fast finality. Sources: official docs. 
+Avalanche Builder Hub
++4
+Bitcoin
++4
+docs.nethermind.io
++4
+
+🔸 Nodes & clients: running a node can be “full”, “light”, or a validator. Ethereum post-Merge needs execution + consensus clients (e.g., Geth + Lighthouse). Running nodes is how decentralization is enforced. 
+docs.nethermind.io
++1
+
+🔁 Distributed ledger ≠ blockchain. All blockchains are DLTs, but DLTs can be blockless and permissioned (e.g., Hyperledger, Corda) — important for enterprise use cases. 
+Medium
++1
+
+🖼️ NFTs vs tokens: NFTs (ERC-721/1155) are unique tokens that record provenance & ownership on-chain; fungible tokens (ERC-20) are interchangeable units used for money, utility, or governance. Standards matter. 
+Ethereum Improvement Proposals
++1
+
+🔍 Real examples: BAYC (Ethereum NFTs), Axie (Ronin/game chain), NBA Top Shot (Flow), Royal (music royalties), USDT/USDC (stablecoins), UNI (governance token). Each shows different ownership/economic models. 
+Uniswap Docs
++5
+OpenSea
++5
+AxieInfini
+
+🧾 Ownership nuance: on-chain ownership = provable control of a token, but off-chain rights (copyright, venue access, physical item titles) depend on terms & law. Always check terms & custody. #NFTs #Law #Web3
+
+Sources (12–15) — use these in your bibliography (I picked official docs + reputable reporting)
+
+Bitcoin — Running a full node / Bitcoin Core. 
+Bitcoin
+
+How to run a Bitcoin node (requirements explainer). 
+GetBlock.io
+
+Ethereum docs — execution & consensus client split (Nethermind). 
+docs.nethermind.io
+
+Ethereum RPC / QuickNode / PoS references. 
+quicknode.com
+
+Solana — confirmation & whitepaper (Proof of History). 
+Solana
++1
+
+Polkadot — Nominated Proof of Stake docs. 
+docs.polkadot.com
+
+Avalanche — Avalanche consensus & nodes (AvalancheGo). 
+Avalanche Builder Hub
++1
+
+Distributed ledger vs blockchain / Hyperledger & Corda comparisons. 
+eleks.com
++1
+
+ERC-721 standard (EIP-721 / ethereum.org). 
+Ethereum Improvement Proposals
++1
+
+ERC-20 standard (EIP-20 / ethereum.org). 
+Ethereum Improvement Proposals
++1
+
+Bored Ape Yacht Club (OpenSea collection / BAYC). 
+OpenSea
+
+Axie Infinity / Ronin docs. 
+AxieInfinity
++1
+
+NBA Top Shot / Flow (Dapper Labs docs). 
+NBA Top Shot Developers
++1
+
+Royal (music NFT platform) / Alchemy case study. 
+Royal
++1
+
+Tether (USDT) & Circle (USDC) official pages (stablecoins).
