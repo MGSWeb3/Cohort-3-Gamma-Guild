@@ -1,0 +1,507 @@
+student name: emmy olisa
+date: 7th november, 2025
+
+## blockchain infrastructure
+### blockchain 1: bitcoin
+#### node types
+•	Full Node
+•	Lightweight Node
+
+#### client implemetation
+bitcoin core
+btcd
+
+key differences: 
+bitcoin core: Official reference client maintaining Bitcoin protocol
+BTCD: Alternative full node for developers and custom integrations
+
+Programming Languages
+Bitcoin Core: C++
+BTCD: Go- Golang
+
+Most Popular Client
+Bitcoin Core because, It’s the reference implementation maintained by Bitcoin developers, ensuring maximum network compatibility, stability, and security. Most nodes and miners run it.
+
+#### consensus mechanism
+proof of work
+How It Works
+•	Miners compete to solve complex cryptographic puzzles (hash computations).
+•	The first miner to find a valid hash broadcasts the block to the network.
+
+Advantages
+Highly secure and battle-tested.
+Resistant to Sybil attacks (requires real computational power).
+
+Disadvantages
+ High energy consumption.
+ Slow transaction throughput (~7 TPS).
+ Mining centralization risk due to expensive hardware.
+
+#### blockchian validator
+Who Proposes and Approves New Blocks:
+
+Proposers: Miners
+
+Approvers: Full nodes verify and approve blocks based on consensus rules.
+
+
+Requirements to Become a Miner:
+
+Specialized hardware (ASIC miners like Antminer S19).
+
+Reliable electricity supply and internet connection.
+
+Optionally join a mining pool for stable rewards.
+
+
+Incentives & Rewards:
+
+Block reward: Currently 3.125 BTC (as of 2024 halving).
+
+Transaction fees: All transaction fees in the block.
+
+Rewards reduce every four years via the Bitcoin halving event.
+
+
+Penalties for Malicious Behavior:
+
+Invalid blocks are rejected by the network.
+
+Waste of computational power and electricity.
+
+Reputation loss (for pools)
+#### performance metrics
+Average Block Time: 10 minutes
+
+Time Until Transaction Finality: A transaction is generally considered final after 6 confirmations
+
+Maximum Transactions per Second (TPS): 3–7 TPS
+Bitcoin prioritizes decentralization and security over speed, hence its low throughput.
+#### sources
+https://www.pwc.com/us/en/industries/financial-services/fintech/bitcoin-blockchain-cryptocurrency.html
+
+### blockchain 2: ethereum
+#### Node types and roles
+Full Node: Stores and validates the full state.
+Archive Node: Keeps complete historical states.
+
+Hardware & Software Requirements
+Node Type	            Hardware	            Software
+Full Node	        1–2TB SSD, ≥16GB RAM	    Geth, Nethermind
+Archive Node	    10TB+ SSD, 32–64GB RAM	    Geth/Erigon with archive mode
+
+#### client implementation
+Major Clients: Geth (Go Ethereum), Nethermind
+
+key differences: 
+geth: Most widely used client, Stable and battle-tested
+nethermind: Focused on performance and Windows/.NET ecosystems, Highly optimized for sync speed and resource efficiency
+
+Programming Languages: Geth: Go (Golang), Nethermind: C#
+
+Most Popular Client
+
+Geth:is most mature, stable, and well-documented Ethereum client, used by most validators and developers. Geth was the first major Ethereum client and has the broadest ecosystem support.
+
+#### consensus mechanism
+Consensus Mechanism
+
+➡️ Proof of Stake (PoS) (since “The Merge” in 2022)
+How It Works:
+
+Validators replace miners.
+To participate, a validator must stake 32 ETH.
+Validators are randomly selected to propose and attest to new blocks.
+
+Advantages
+Energy efficient — no mining required.
+Faster finality and scalability.
+
+Disadvantages
+
+Requires significant stake (32 ETH) to become a validator.
+More complex implementation and slashing risk.
+
+#### blockchain validator
+i. Who Proposes and Approves New Blocks
+
+Proposers: Validators
+Approvers: Other validators who attest to the proposed block’s validity.
+
+ii. Requirements to Become a Validator
+
+Stake 32 ETH on the Ethereum network.
+Run both an Execution client (e.g., Geth) and a Consensus client (e.g., Prysm, Lighthouse).
+
+iii. Incentives & Rewards
+
+Block proposal rewards: Earned when proposing a valid block.
+Attestation rewards: Earned for validating others’ blocks.
+
+
+iv. Penalties for Malicious Behavior
+
+Slashing: Loss of part or all of staked ETH for double-signing or building conflicting chains.
+Inactivity leaks: Gradual loss of stake for being offline or unresponsive.
+
+#### performance metrics
+i. Average Block Time: 12 seconds
+
+ii. Time Until Transaction Finality: Using Proof of Stake, finality is achieved after 2 epochs (~12.8 minutes)
+
+iii. Maximum Transactions per Second (TPS): 15–30 TPS (on mainnet)
+
+#### sources
+https://ethereum.org/developers/docs/
+https://www.invesco.com/us/en/insights/
+
+### blockchain 3: solana
+#### Node Types and roles
+Validator Node, RPC Node
+
+
+Roles & Functions
+Validator Node: Participates in consensus (Proof-of-Stake + Proof-of-History), validates transactions, and produces new blocks.
+RPC Node: Provides API endpoints for clients and dApps to interact with the blockchain (reads/writes data).
+
+iii. Hardware & Software Requirements
+Node Type	                  Hardware	                                        Software
+Validator Node	    12+ core CPU, 128GB RAM, 1TB+ NVMe SSD,             Solana Validator client
+RPC Node	        Similar to validator node specs	                    Solana RPC software
+
+#### client implementation
+Major Clients: Solana Labs Validator (solana-validator), Agave
+
+key difference
+solana labs validator: Official, primary client maintained by Solana Labs, Core reference for network operation
+agave: Alternative client built for resilience and performance, Focused on security and parallel transaction execution
+
+Programming Languages: Rust
+
+Most Popular Client:
+Solana Labs Validator: Currently the only fully supported and production-ready Solana client. Agave is still under development to promote decentralization.
+
+#### consensus mechanism
+Proof of History (PoH) + Proof of Stake (PoS) 
+
+How It Works
+
+Proof of History (PoH): Cryptographic clock that timestamps transactions before consensus providing a verifiable order of events.
+
+Proof of Stake (PoS): Validators stake SOL and vote on block validity.
+
+Advantages
+
+Extremely fast (~65,000 TPS).
+Low transaction fees.
+High scalability and throughput due to parallel transaction processing.
+
+Disadvantages
+
+High hardware requirements — limits validator participation.
+Occasional network outages due to heavy load.
+More centralized than Bitcoin/Ethereum due to fewer validators.
+
+#### blockchain validators
+Who Proposes and Approves New Blocks
+
+Proposers: Leaders (Validators) — selected in a rotating schedule based on stake weight.
+approvers: Other validators vote to confirm transactions.
+
+Requirements to Become a Validator
+Stake SOL tokens (no fixed minimum but higher stake increases leadership frequency).
+Powerful hardware: ≥12 cores CPU, 128GB RAM, 1TB+ NVMe SSD, high-speed internet.
+Run Solana Validator client software and maintain uptime.
+
+Incentives & Rewards
+Inflationary rewards: Earned proportional to stake.
+Delegation rewards: Validators earn commission from staked tokens delegated by others.
+
+Penalties for Malicious Behavior
+Downtime penalties: Reduced rewards for being offline.
+Reputation-based delegations: Poor performance reduces stake delegations.
+#### performance metrics
+Average Block Time: ~400 milliseconds (0.4 seconds)
+
+Time Until Transaction Finality: ~2–5 seconds for practical finality.
+
+Confirmed finality via consensus within a few blocks due to Proof of History (PoH).
+
+Maximum Transactions per Second (TPS): Up to 65,000 TPS 
+#### sources
+https://medium.com/%40karthik.naick.s/unveiling-solana-a-deep-dive-into-solana-consensus-mechanisms
+
+### blockchain 4: polygon
+#### node type and function
+Node Types: Full Node (Borgh node), Validator Node
+
+Roles & Functions
+Full Node: Syncs with the network, validates transactions, and provides data to other nodes and dApps.
+Validator Node: Stakes MATIC, produces blocks, and participates in consensus. Operates on both Ethereum (checkpointing) and Polygon.
+
+Hardware & Software Requirements
+Node Type	             Hardware	                                    Software
+Full Node	        4–8 vCPU, 16–32GB RAM, 1TB+ SSD	     Bor (block producer) + Heimdall (consensus layer)
+Validator Node	    8+ vCPU, 32GB+ RAM, 2TB SSD	         Bor + Heimdall + staking setup
+
+#### client implementation
+Major Clients:Bor,Heimdall 
+key difference
+bor: Handles block production (similar to Ethereum’s execution layer)
+heimdall: Handles consensus and checkpointing to Ethereum mainnet
+
+Programming Languages
+Bor: Go (Golang)
+Heimdall: TypeScript
+
+Most Popular Client
+Both Bor and Heimdall are required becuase Polygon PoS depends on Bor for chain execution and Heimdall for validator coordination. Together, they form the core of the Polygon PoS system.
+
+#### consensus mechanism
+Proof of Stake (PoS)
+
+How It Works
+Validators stake MATIC tokens to participate in block production and validation.
+The network consists of two layers:
+Bor Layer: Produces blocks (execution layer).
+Heimdall Layer: Runs PoS consensus and periodically checkpoints to Ethereum for finality.
+Validators earn rewards for block validation and staking.
+
+Advantages
+Low transaction costs and high speed.
+Security anchored to Ethereum mainnet.
+Energy-efficient PoS mechanism.
+
+Disadvantages
+Some degree of centralization (limited validator set).
+Dependent on Ethereum for checkpoint finality.
+Occasional network congestion due to scaling demand.
+
+#### blockchain validator
+Who Proposes and Approves New Blocks
+Proposers: Block Producers (on Bor layer)
+Approvers: Validators (on Heimdall layer) who checkpoint to Ethereum.
+
+Requirements to Become a Validator
+Stake MATIC tokens in the staking contract.
+Run both Bor and Heimdall nodes.
+Maintain high uptime and connectivity.
+
+Incentives & Rewards
+Block rewards: Earned for proposing valid blocks.
+Transaction fees: Shared among validators.
+Staking rewards: Earned from the staking pool proportional to stake size.
+
+Penalties for Malicious Behavior
+Slashing: Partial or total loss of staked MATIC for double-signing, downtime, or malicious validation.
+Removal from validator set for extended unavailability.
+Reduced reputation leading to fewer delegations.
+
+#### performance metrics
+Average Block Time: 2 seconds
+
+Time Until Transaction Finality: 2–3 seconds on the Polygon chain.
+30 minutes for final checkpoint finality on Ethereum mainnet.
+
+Maximum Transactions per Second (TPS): 7,000+ TPS (theoretical)
+Average operational throughput: ~65–100 TPS (depending on network load).
+
+#### sources
+https://cointelegraph.com/learn/articles/polygon-blockchain
+https://polygon.technology/polygon-pos
+
+### comparison table
+| Blockchain | Consensus | Node Types | Main Client | Block Time | Validator Type |
+|------------|-----------|------------|-------------|------------|----------------|
+| bitcoin    |proof of work|full node | bitcoin core|  10 mins   |                |
+| ethereum   |proof of stake|validator node|   geth | 12 seconds |                |
+| solana     |proof of history|RPC node|sol lab validator| 0.4 seconds|                |
+| polygon    |proof of stake |borgh node|     bor        | 2 seconds  |                |
+
+key insights
+i. all blockchains reveals how each blockchain balances the trade-off between security, scalability, and decentralization through different consensus mechanisms
+ii. they achieve faster transactions and efficiency but face increasing challenges with hardware demands and centralization risks.
+iii. Validator design directly affects who can participate, how decentralized the network is, and how governance evolves.
+
+## part 2: distributed ledger vs blockchain
+### introduction
+### what is distributed ledger
+A distributed ledger is a shared digital record system where data or transactions are stored across multiple computers (nodes) instead of one central server. Every participant has an identical copy of the ledger, and all updates are synchronized through a consensus process, ensuring transparency, security, and trust without needing a central authority.
+
+Core Characteristics of Distributed Ledger Technology (DLT):
+i.Decentralization – No single entity controls the data
+ii. Transparency – All participants can view the same data, promoting trust.
+iii. Security – Cryptographic techniques protect data from tampering and unauthorized access.
+
+Problems DLT Solves:
+i.Eliminates intermediaries – Reduces the need for third parties (like banks or brokers) to verify transactions.
+ii. Increases efficiency – Speeds up processes that traditionally require multiple verifications or reconciliation.
+iii. Improves data integrity – Distributed validation ensures the ledger remains accurate and consistent even if some nodes fail.
+### What Makes Blockchain Special?
+Blockchain is a specialized form of Distributed Ledger Technology (DLT) with these unique features:
+
+i. Data Structure (Blocks):
+Transactions are grouped into blocks that are linked together sequentially.
+Each block contains transaction data, a timestamp, and a cryptographic hash of the previous block.
+
+ii.Chained Record System:
+Blocks are connected in a linear, chronological chain — forming a permanent, verifiable history of all transactions.
+
+iii.Consensus Mechanisms:
+Uses algorithms like Proof of Work (PoW) or Proof of Stake (PoS) to validate and agree on new blocks.
+
+iv.Cryptographic Security:
+Each block’s hash ensures the data cannot be altered without changing every subsequent block.
+
+How does the chain structure work?
+Transactions Occur:
+Users send or record data (e.g., payments, contracts, asset transfers).
+Block Creation:
+Transactions are collected into a block by a miner or validator.
+Hash Linking:
+Each block includes the hash (a unique digital fingerprint) of the previous block, creating a continuous link.
+Validation:
+The network’s nodes verify the new block through a consensus mechanism.
+
+Once verified, the block is permanently added to the blockchain, and all nodes update their copies.
+This chained structure ensures that every block depends on the previous one, making the entire ledger tamper-evident and trustworthy.
+
+Why is it called a "blockchain"?
+It’s called a “blockchain” because the data is literally stored in blocks that are chained together in sequence.
+Each new block contains a link (via a cryptographic hash) to the one before it, forming a chain of blocks.
+This chain grows continuously as more transactions are added over time.hence, the term blockchain.
+
+Key Differences Between DLT and Blockchain
+For General Distributed Ledger Technology (DLT):
+i. Records may exist independently or connected through flexible relationships.
+ii.Validation rules depend on the DLT type; may not require mining.
+iii.May allow permissioned access where only authorized nodes can read/write data.
+iv. Can achieve higher speed and scalability due to flexible design
+
+for Blockchain
+i. Each block references the hash of the previous block, ensuring a strict chronological order.
+ii. Requires consensus by miners or validators before adding each block
+iii. Typically slower due to block creation time and consensus overhead.
+iv. High transparency in public blockchains; every node can view transactions
+
+### Non-Blockchain Distributed Ledgers
+#### DLT Example 1: IOTA 
+How it works:
+
+IOTA uses a Directed Acyclic Graph (DAG) structure called the Tangle. Rather than bundling transactions into blocks and linking blocks linearly, each new transaction in IOTA must approve (i.e., reference) two (or more) previous transactions. There are no miners in the classic sense; the act of issuing a transaction involves helping validate prior ones, thereby distributing validation. 
+
+Use-cases:
+Designed primarily for the Internet of Things (IoT): for example machine-to-machine microtransactions (very small amounts), device-to-device data exchange, sensor networks. 
+
+Environments where transaction fees must be minimal or zero, and many devices interacting autonomously.
+
+Advantages over traditional blockchains:
+Fee-less or extremely low fees: Because there is no traditional “miner block reward” model, and the validation burden is shared by transactors. 
+Potentially higher scalability / throughput: Since transactions don’t wait for block formation and can approve others in parallel. 
+Lower energy overhead: Without heavy Proof-of-Work mining and large block creation.
+
+#### DLT Example 2: Hedera Hashgraph
+How it works:
+Hedera uses the “Hashgraph” data structure, which is also a form of DAG (or more precisely a directed graph of events) combined with a gossip-about-gossip protocol plus virtual voting consensus. 
+In the gossip protocol, nodes randomly share information about transactions (“who told who, and when”). From the history of these gossip events, the system can determine consensus on the order of transactions (virtual voting) without the typical block/miner model. 
+
+Use-cases:
+Enterprise and business-grade distributed ledger applications: high-throughput tokenization, micropayments, supply chain, identity, governance frameworks. 
+Use-cases demanding fast consensus, strong security guarantees, fairness of transaction ordering.
+
+Advantages over traditional blockchains:
+Much higher throughput / lower latency than many standard blockchains (which may be limited by block size/interval). 
+Fair ordering: Because of virtual voting and timestamping, less chance for transaction order manipulation. 
+Reduced energy consumption since no heavy mining or large block propagation required.
+
+#### DLT Example 3: Corda 
+How it works:
+Corda is a permissioned DLT platform aimed at enterprise/financial-industry use. Unlike many blockchains, Corda does not use a global broadcast of all transactions to all nodes. Instead, transactions and ledger states are shared only with the parties that need to know. 
+
+It doesn’t bundle transactions into blocks and link blocks in a chain in the classic blockchain style. Instead, it uses states (data objects) and contracts, and uses a “notary” service (or notaries) to guarantee uniqueness (i.e., no double spends) and consensus on those states. 
+Each node stores only the ledger states relevant to it (its “vault”) rather than the entire network ledger. 
+
+Use-cases:
+Financial institutions and enterprises where privacy, confidentiality, regulated data sharing, trade-finance, asset issuance are important. 
+Multi-party workflows where only certain parties need visibility into a given transaction (versus public broadcast).
+
+Advantages over traditional blockchains:
+Privacy / data partitioning: Only parties involved in a transaction see it; unlike many blockchains where all nodes see all transaction,.
+Scalability / efficiency: Because not everyone needs to process every transaction, and there is no global chain all nodes must maintain.
+
+### Deep Analysis and Conclusions
+Blockchain is best used when trustless, transparent, and immutable record-keeping is essential such as in cryptocurrencies, decentralized finance, or public audit trails. It excels in open, untrusted environments where participants do not know or trust each other, and global consensus ensures integrity. However, its limited scalability, slower throughput, and high energy use make it less suitable for applications requiring real-time performance or massive transaction volumes.
+
+Other DLTs (like IOTA, Hedera, or Corda) are better suited when speed, efficiency, or privacy is a higher priority than full decentralization. They perform well in enterprise, IoT, or permissioned networks, where participants are partially trusted and need fast, low-cost validation. These systems trade some decentralization for greater scalability and customization.
+
+### All sources and references
+https://www.investopedia.com/terms/t/tangle-cryptocurrency.asp
+https://blocktechbuzz.com/2024/12/31/hedera-hashgraph-revolutionizing-distributed-ledger-technology
+https://en.wikipedia.org/wiki/Hedera_(distributed_ledger)
+
+### Understanding Fungible Token
+Fungibility means that individual units of an asset are interchangeable and identical in value, one unit is exactly the same as another. For example, one ₦1000 note or one Bitcoin is worth the same as any other of the same type, regardless of its history or who owns it.
+
+How fungible tokens work technically on blockchain:
+Fungible tokens are built using smart contracts that define rules for creating, transferring, and tracking balances.
+Each token unit is recorded on the blockchain as part of a user’s wallet balance, not as a unique item.
+When a transfer happens, the smart contract updates balances — similar to how a digital bank ledger updates account values.
+On Ethereum, the most common standard is ERC-20, which ensures all fungible tokens behave consistently (so wallets, exchanges, and dApps can interact with them easily).
+Every token is divisible, transferable, and indistinguishable from others within the same contract.
+
+Key characteristics that make a token fungible:
+Interchangeability – Any token of the same type can replace another without changing value.
+Divisibility – Tokens can be divided into smaller units (e.g., 0.5 ETH).
+Uniformity – All tokens have identical properties and functions.
+Liquidity – Can be traded easily on exchanges or within apps.
+Standardization – Built using token standards (like ERC-20 or BEP-20) to ensure compatibility across platforms
+
+different types of fungible token
+cryptocurrency token, stable token, utility token, governance token
+
+How fungible tokens are created
+Fungible tokens are created through smart contracts deployed on a blockchain.
+A developer writes a token smart contract that defines the token’s name, symbol, total supply, and decimal precision.
+The contract automatically creates and assigns the initial supply of tokens to a specified wallet (often the creator’s).
+Once deployed, the smart contract becomes part of the blockchain, meaning its code and rules are permanent and transparent.
+Users can then transfer tokens, check balances, and interact with the contract using compatible wallets (like MetaMask).
+
+Blockchain standards for fungible tokens:
+solana, ethereum, polygon, TRON
+
+How token transfers work (technical process)
+When a token transfer happens, it’s not a coin physically moving, but a ledger update recorded in the smart contract.
+
+User initiates a transaction
+– The sender calls the smart contract’s transfer() or transferFrom() function.
+
+Smart contract verification
+– The contract checks if the sender’s balance is sufficient.
+– If yes, it subtracts 50 from the sender’s balance and adds 50 to the recipient’s balance.
+
+Blockchain validation
+– The transaction is broadcast to the network.
+– Validators or miners confirm it through the blockchain’s consensus mechanism (e.g., Proof of Stake).
+
+Permanent record
+– Once confirmed, the updated balances are stored on-chain.
+– An event log (like Transfer(from, to, amount)) is emitted for tracking by wallets or dApps.
+
+How fungible tokens replace traditional currencies
+Fungible tokens function as digital representations of value that can be transferred, stored, and exchanged just like physical money — but on a blockchain.
+They remove intermediaries (like banks or payment processors) by allowing peer-to-peer transactions verified through decentralized consensus.
+Tokens like stablecoins (USDT, USDC) mirror the value of fiat currencies (USD, EUR, NGN) and can be sent globally in seconds with low fees.
+Because every transaction is recorded on a public ledger, they provide transparency and traceability far beyond what physical cash can offer.
+
+How they enable new economic models
+Fungible tokens power digital-first economies and entirely new financial systems:
+Decentralized Finance (DeFi): Tokens allow lending, borrowing, staking, and trading without banks.
+Tokenized assets: Real-world assets (stocks, real estate, gold) can be represented as divisible digital tokens for easier access and liquidity.
+Micropayments: Because fees are low, tokens enable payments of very small value — ideal for streaming, IoT, or pay-per-use services.
+DAO and governance models: Tokens give holders voting rights in decentralized organizations.
+Cross-border economies: Tokens eliminate currency conversion barriers and settlement delays, making global trade instant.
+
+Problems they solve that physical money cannot:
+Instant, low-fee global transfers through blockchain networks.
+Decentralized control gives users full ownership of their assets.
+Anyone with internet access and a wallet can store and send tokens
