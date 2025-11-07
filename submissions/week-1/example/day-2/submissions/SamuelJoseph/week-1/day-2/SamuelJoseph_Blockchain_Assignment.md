@@ -1,0 +1,15 @@
+| Blockchain | Node types | Clients / software | Consensus |
+|---|---|---|---|
+| Bitcoin | Full nodes, light nodes, miners | Bitcoin Core | Proof of Work (PoW). :contentReference[oaicite:20]{index=20} |
+| Ethereum | Execution clients + Consensus clients, full/light nodes | Geth, Nethermind; Lighthouse, Prysm, Teku | Proof of Stake (PoS) (post-Merge). :contentReference[oaicite:21]{index=21} |
+| Solana | Validators, RPC nodes, archival nodes | solana-validator (CLI) | Proof of History (PoH) + PoS (for validator selection). :contentReference[oaicite:22]{index=22} |
+| Polkadot | Validators, nominators, collators | polkadot (Substrate clients) | Nominated Proof of Stake (NPoS). :contentReference[oaicite:23]{index=23} |
+| Avalanche | Validators, full nodes, RPC nodes | AvalancheGo | Avalanche consensus (sub-sampled voting, fast finality). :contentReference[oaicite:24]{index=24} |
+
+
+| Feature | Distributed Ledger (DLT) | Blockchain |
+|---|---|---|
+| Definition | Replicated ledger across nodes; can be permissioned | Type of DLT that stores data in cryptographically chained blocks. :contentReference[oaicite:25]{index=25} |
+| Structure | Flexible (not necessarily block-based) | Block-chained structure |
+| Consensus | Many types (permissioned algorithms common) | PoW/PoS/NPoS/others |
+| Use cases | Enterprise, private networks (Hyperledger, Corda) | Public networks, open value transfer (Bitcoin/Ethereum) :contentReference[oaicite:26]{index=26} |
