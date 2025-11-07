@@ -1,0 +1,236 @@
+Week 1 Day 2: Blockchain Infrastructure Research
+Student Name: Onam Ella (Kim)
+Date: Friday 7th Nov
+Tweet Link: [https://x.com/KimV3rse_/status/1986810929162371181?t=Qir9EnMFy4LIEF_-E_BH0w&s=19]
+Part 1: Blockchain Infrastructure Research
+Blockchain 1: Ethereum 
+Node Types
+ * Full Node (Execution + Consensus): The backbone. Stores all current blockchain data. Execution Client manages transactions and state changes (EVM); Consensus Client manages PoS logic, attests to blocks, and syncs the Beacon Chain. Requirements: 4-core CPU, 16GB RAM, 1TB NVMe SSD.
+ * Validator Node: A specialized Full Node that has staked 32 ETH. Responsible for proposing and attesting to new blocks to earn rewards. Requires high uptime and stability.
+ * Archive Node: Stores the complete historical state of every account and contract at every block. Essential for services like block explorers. Requirements: Significantly higher (e.g., 64GB+ ECC RAM, 10TB+ NVMe SSD).
+ * Light Node: Downloads only block headers and verifies data using Merkle proofs, relying on Full Nodes for necessary information. Low resource use.
+Client Implementations
+ * Execution Clients: Geth (Go-Ethereum, most popular, stable) and Nethermind (C#/.NET, high performance, enterprise features).
+ * Consensus Clients: Lighthouse (Rust) and Prysm (Go).
+ * Key Difference: The required dual-client architecture (Execution + Consensus) increases network resilience through client diversity.
+Consensus Mechanism
+ * Mechanism: Proof-of-Stake (PoS).
+ * How it Works: Validators stake 32 ETH. Validators are randomly selected to propose a block in a slot (12 seconds), while others attest to its validity.
+Block Validators
+ * Proposes and Approves: Proposed by a randomly selected Validator. Approved by a committee of Validators who create attestations (votes).
+ * Requirements: Stake 32 ETH and run a Full Node (Execution + Consensus clients) with high uptime.
+ * Incentives/Rewards: Staking Rewards (new ETH issuance) and a portion of Transaction Fees (priority fees).
+ * Penalties: Slashing (loss of stake for malicious behavior) and Inactivity Leak (gradual loss for extended downtime).
+Performance Metrics
+ * Average Block Time: ~12 seconds (fixed).
+ * Time until Transaction Finality: Approximately 13-15 minutes (after two epochs, reaching a "finalized" state).
+ * Maximum TPS (Layer 1): ~15-30 TPS.
+Sources
+ * [Reference]Ethereum Foundation. (n.d.). The Merge and Proof-of-Stake. Retrieved from ethereum.org/en/upgrades/merge/
+ * OpenZeppelin. (n.d.). ERC-721 Token Standard and ERC-20 Token Standard. Retrieved from docs.openzeppelin.com/contracts/
+Blockchain 2: Bitcoin 
+Node Types
+ * Full Node (Archival): Stores and verifies the complete transaction history and all blocks, enforcing protocol rules. Provides maximum security. Requirements: 4GB+ RAM, 1TB+ SSD, 24/7 internet.
+ * Mining Node: A Full Node connected to specialized ASIC hardware. Performs the intensive hashing required to find the next valid block (Proof-of-Work). Requirements: High-end ASIC hardware and large, cheap electricity.
+ * Light/SPV Node: Downloads only block headers, verifying transactions via Simplified Payment Verification (SPV). Used by most mobile wallets.
+Client Implementations
+ * Bitcoin Core (C++): The most popular and original software; the network's reference implementation, focused on security and protocol adherence.
+ * btcd (Go): An alternative, clean-room implementation focused on simplicity and performance.
+Consensus Mechanism
+ * Mechanism: Proof-of-Work (PoW).
+ * How it Works: Miners compete using computational power (hashing) to find a nonce that produces a hash below a target difficulty. The first to find it broadcasts the block.
+Block Validators
+ * Proposes and Approves: Proposed by the Miner (or mining pool) that wins the computational race. Approved by the entire network of Full Nodes if it adheres to all protocol rules.
+ * Requirements: Specialized ASIC hardware and access to cheap electricity. No monetary staking requirement.
+ * Incentives/Rewards: Block Reward (newly minted BTC) and all associated Transaction Fees.
+ * Penalties: No formal on-chain slashing. Penalty is purely economic (wasted electricity) for proposing an invalid block.
+Performance Metrics
+ * Average Block Time: ~10 minutes (constant).
+ * Time until Transaction Finality: Conventionally 6 confirmations (blocks), which takes approximately 1 hour.
+ * Maximum TPS (Layer 1): ~3-7 TPS.
+Sources
+ * Nakamoto, S. (2008). Bitcoin: A Peer-to-Peer Electronic Cash System. Bitcoin Whitepaper.
+Blockchain 3: Solana 
+Node Types
+ * Validator Node: The primary node. Processes transactions, runs the cluster, and participates in PoS/PoH consensus to propose and vote on blocks. Requirements: Extremely high-end hardware (12+ core CPU, 256GB+ RAM, high-speed NVMe SSDs, 1 Gbit/s internet).
+ * Archive Node: A Validator configured to retain the entire ledger history.
+ * RPC Node: Handles client queries (wallets, DApps) that need to read data from the blockchain. Requires high-end hardware due to intense read/write workload.
+Client Implementations
+ * Solana Validator Client (Rust): The official and only software implementation required to run a validator.
+ * Key Difference: The use of Rust is critical for memory safety and high performance, enabling the network's high throughput goals.
+Consensus Mechanism
+ * Mechanism: Proof-of-Stake (PoS) augmented by Proof-of-History (PoH).
+ * How it Works: PoH acts as a global, cryptographic clock, creating a verifiable record of time and transaction order. Tower BFT (PoS) leverages this clock to reach consensus quickly by having staked validators vote on the PoH-stamped order.
+Block Validators
+ * Proposes and Approves: Proposed by a single Validator (Leader), pseudo-randomly selected for a slot. Approved by a supermajority of staked Validators via votes in the Tower BFT consensus.
+ * Requirements: High-end hardware and influence weighted by staked SOL.
+ * Incentives/Rewards: Staking Rewards (new SOL issuance) and a portion of Transaction Fees.
+ * Penalties: Slashing is defined but limited in scope (mainly double-signing). Primarily penalized by reduction in rewards for missing votes or being offline.
+Performance Metrics
+ * Average Block Time: ~400 milliseconds (0.4 seconds).
+ * Time until Transaction Finality: Typically sub-second.
+ * Maximum TPS (Layer 1): Can achieve thousands of TPS sustained.
+Sources
+ * Solana Foundation. (n.d.). An Introduction to Proof of History. Retrieved from docs.solana.com
+Blockchain 4: Polygon PoS Chain (Sidechain)
+Node Types
+ * Full Node (Heimdall + Bor): Maintains a complete copy of the Heimdall consensus chain and the Bor execution chain. Requirements: 32GB+ RAM, 8+ core CPU, 4TB+ SSD.
+ * Validator Node: A Full Node that stakes MATIC/POL and participates in checkpointing. Runs both Heimdall (consensus) and Bor (block production).
+ * Sentry Node: A Full Node that protects the Validator Node from DDoS attacks by communicating with the public network while the Validator remains private.
+Client Implementations
+ * Bor (Go): The execution layer (EVM compatible), derived from a fork of Ethereum's Geth client. Handles block production and transaction processing.
+ * Heimdall (Go): The consensus layer, based on Tendermint/CometBFT. Manages validators and commits periodic checkpoints back to the Ethereum mainnet.
+ * Key Difference: Requires a dual-client system (Bor and Heimdall) that manages two distinct layers (Execution and Consensus).
+Consensus Mechanism
+ * Mechanism: Proof-of-Stake (PoS), implemented on the Heimdall layer.
+ * How it Works: Staked validators validate blocks from the Bor chain. Crucially, they periodically submit a checkpoint (state hash) back to the Ethereum mainnet, rooting Polygon's security in Ethereum.
+Block Validators
+ * Proposes and Approves: Blocks are proposed by Block Producers (a rotating subset of validators on the Bor layer). Approved by the consensus-focused Validators on the Heimdall layer.
+ * Requirements: Run the full node setup and stake a competitive amount of MATIC/POL on Ethereum mainnet.
+ * Incentives/Rewards: Staking Rewards and a share of Transaction Fees. Bonuses for successful checkpoint inclusion.
+ * Penalties: Slashing for malicious behavior (e.g., double signing a checkpoint). Reduced rewards for low uptime/missed signatures.
+Performance Metrics
+ * Average Block Time: < 2 seconds.
+ * Time until Transaction Finality: ~2 seconds (on Polygon chain itself). True security finality occurs after the checkpoint on Ethereum.
+ * Maximum TPS (Layer 1/Sidechain): Up to thousands of TPS sustained.
+Sources
+ * Polygon Technology. (n.d.). Polygon PoS Architecture and Heimdall. Retrieved from docs.polygon.technology/docs/pos/architecture/
+Comparison Table
+| Blockchain | Consensus | Node Types | Main Client | Block Time | Validator Type |
+|---|---|---|---|---|---|
+| Ethereum | PoS (Dual-client) | Full, Validator, Archive, Light | Geth/Lighthouse | ~12 seconds | Staker (32 ETH) |
+| Bitcoin | PoW | Full, Mining, Light/SPV | Bitcoin Core | ~10 minutes | Miner (ASIC Hardware) |
+| Solana | PoH + PoS (Tower BFT) | Validator, Archive, RPC | Solana Validator Client | ~0.4 seconds | Staker (High-end HW) |
+| Polygon PoS | PoS (Heimdall/Bor) | Full, Validator, Sentry | Bor (Geth fork) / Heimdall | < 2 seconds | Staker (MATIC/POL) |
+Key Takeaways
+ * Security vs. Scalability Trade-off: Bitcoin (PoW) prioritizes maximum security and decentralization, resulting in the lowest TPS (~3-7) and longest finality (~1 hour). Solana and Polygon prioritize high throughput, achieving thousands of TPS at the cost of higher hardware requirements (Solana) or relying on Ethereum for final security (Polygon).
+ * The Shift to PoS: Ethereum and Polygon utilize Proof-of-Stake to reduce energy consumption and hardware barriers (for general nodes, not validators), but this introduces a high economic barrier (32 ETH stake) compared to Bitcoin's non-monetary barrier.
+ * Complexity of High Performance: High-speed blockchains necessitate complex infrastructure: Ethereum uses a dual-client system, Solana uses a novel PoH cryptographic clock, and Polygon runs a two-chain architecture (Heimdall/Bor) to manage execution and consensus separately.
+ * Client Diversity is Key: Ethereum explicitly promotes high client diversity (Geth, Lighthouse, Prysm) to increase network resilience, whereas Solana's core functionality is currently reliant on a single primary client implementation (Solana Validator Client).
+[Part 2:] Distributed Ledger Technology vs Blockchain
+Introduction
+A Distributed Ledger Technology (DLT) is a foundational concept: a replicated, shared, and synchronized database spread across multiple computers or institutions. Blockchain is a specific, linear-chained type of DLT.
+What is Distributed Ledger Technology (DLT)?
+A DLT is a shared, synchronized database replicated across a network of participants (nodes). It is secured using cryptography and employs a consensus mechanism to guarantee that data updates are valid and permanently recorded without needing a central administrator. DLTs solve the trust problem inherent in centralized systems by eliminating reliance on single authorities, leading to reduced fraud, lower costs, and increased transparency.
+What Makes Blockchain Special?
+The defining feature of a blockchain is its data structure. Data is organized into blocks that are linked together cryptographically in a single, linear, chronological chain. A new block's header contains the hash of the previous block, creating a chain of dependency. This makes the ledger tamper-evident; if any historical data is altered, the chain of hashes breaks, making the change instantly detectable and rejected by the network. This is why it's called a "block-chain."
+Key Differences Between DLT and Blockchain
+| Feature | Blockchain (A type of DLT) | General DLT (Including non-blockchain) |
+|---|---|---|
+| Data Structure | Linear Chain of Blocks: Data is strictly sequential and grouped. | Flexible/Various: Can be linear, a Directed Acyclic Graph (DAG), or another mesh/network structure (non-sequential). |
+| Data Ordering | Strict global ordering enforced by the block sequence. | Ordering can be local or determined by referencing adjacent transactions (e.g., DAGs). |
+| Architecture | Typically a Single Global Ledger agreed upon by all nodes. | Can be a shared ledger or agent-centric where each participant maintains their own local chain/data portion (Holochain). |
+| Token Usage | Often relies on a native token (PoW/PoS) for security and incentives. | May or may not require a native token (often absent in permissioned DLTs). |
+Non-Blockchain Distributed Ledgers
+DLT Example 1: Directed Acyclic Graph (DAG) (e.g., IOTA, Nano)
+ * What it is: A data structure that forms a mesh or network where data flows in one direction (Acyclic), and each transaction references and approves others (Directed).
+ * How it works: No Blocks or Miners. Transactions directly reference and approve two or more previous transactions ("tips"), confirming them instantly.
+ * Key differences from blockchain: No blocks, no linear chain, no mining (in the traditional sense).
+ * Use cases: IoT Data Streams, machine-to-machine payments, micro-transactions.
+ * Advantages over blockchain: High Scalability/TPS (parallel processing); Zero Transaction Fees; faster confirmation.
+DLT Example 2: Hashgraph (e.g., Hedera Hashgraph)
+ * What it is: A high-speed, secure DLT platform utilizing a consensus algorithm based on a 'gossip' protocol.
+ * How it works: Uses "gossip about gossip" and Virtual Voting. Nodes efficiently share transaction ordering information and converge on the state without actual voting communication rounds.
+ * Key differences from blockchain: Highly efficient consensus mechanism that avoids energy-intensive PoW or the slow communication rounds of traditional PoS.
+ * Use cases: Enterprise solutions, financial modeling, high-throughput log management.
+ * Advantages over blockchain: Guaranteed Fairness (objective transaction ordering); extremely Fast and Deterministic Finality; highly efficient bandwidth use.
+DLT Example 3: Holochain
+ * What it is: An agent-centric framework for distributed applications (DApps) that focuses on local chains.
+ * How it works: Each user maintains a local, cryptographically signed "source chain" of their actions. There is no single global ledger. Validation occurs only when agents interact.
+ * Key differences from blockchain: Agent-Centric, not a single global chain. Users only store data relevant to them, not the entire network history.
+ * Use cases: Collaborative applications, decentralized social media platforms, P2P data exchange.
+ * Advantages over blockchain: Massive Horizontal Scalability (no global consensus bottleneck); Low Resource Usage (users only store relevant data).
+Comparison Table: Blockchain vs Non-Blockchain DLT
+| Feature | Blockchain (e.g., Bitcoin) | Non-Blockchain DLT Example (e.g., DAG/Hashgraph) |
+|---|---|---|
+| Data Structure | Linear Chain of Blocks (Sequential) | Graph, Mesh, or Tree Structure (Non-sequential) |
+| Consensus Mechanism | PoW or PoS (Global, network-wide agreement required) | Virtual Voting, "Gossip," or Local Validation |
+| Scalability | Lower (limited by block size/time) | High (parallel transaction processing) |
+| Energy Efficiency | High (PoW) to Low (PoS) | Very High (no mining/global voting bottleneck) |
+| Use Cases | High-value settlement, maximum censorship resistance (Layer 1) | High-volume, low-value data streaming, enterprise supply chain logging |
+Deep Analysis and Conclusions
+Choosing a non-blockchain DLT (like a DAG) over a blockchain is primarily driven by the need for higher throughput, lower latency, and zero transaction fees. For specialized, industrial applications (e.g., streaming sensor data), the constant global consensus required by a blockchain is an unnecessary bottleneck.
+The trade-offs involve potential reductions in decentralization or the strength of economic security guarantees (PoW/PoS capital cost) found in public blockchains.
+Where I see each technology being most useful:
+ * Traditional Blockchains (Bitcoin/Ethereum L1): Best for high-value settlement, maximum security, and censorship resistance (the base layer of the Web3 economy).
+ * Non-Blockchain DLTs (DAGs/Hashgraph): Best for high-volume, low-value data streaming and enterprise applications where speed and cost efficiency are critical (e.g., manufacturing, supply chain logging).
+[Part 3:] NFTs and Fungible Tokens - Digital Transformation
+Understanding Fungible Tokens (FTs)
+Define fungibility: Fungibility is the quality of an asset where individual units are perfectly interchangeable because they possess identical value, characteristics, and utility.
+How fungible tokens work technically on blockchain: A smart contract (e.g., ERC-20) maintains a ledger mapping user wallet addresses to an integer representing their token balance. Transfers involve simply decreasing one balance and increasing another.
+Key Characteristics: Interchangeable, Divisible (can be broken into smaller units), and possess Uniform Value.
+Technical Implementation: Tokens are minted by deploying an ERC-20 smart contract that defines the total supply and core transfer logic. A transaction calls the transfer() function on the contract, which atomically updates the internal balance ledger.
+Understanding NFTs
+Define non-fungibility: The quality of an asset where each unit is unique, distinct, and cannot be substituted for another without changing the asset's identity or properties.
+How NFTs work technically on blockchain: A smart contract tracks the specific, unique Token ID assigned to a single wallet address. The contract enforces that a Token ID can only have one owner at a time.
+What makes each NFT unique and irreplaceable? The unique pairing of the Contract Address and the Token ID, which is permanently linked to unique Metadata describing the asset's attributes and history.
+Relationship between Token and Underlying Asset: The NFT is the immutable certificate of ownership and provenance, not the digital file itself. It contains a URI (often to IPFS) pointing to the underlying media asset.
+Technical Implementation: NFTs are created by Minting a new unique token ID via the smart contract, linking the unique metadata to that ID.
+Blockchain standards: ERC-721 (Unique Tokens) and ERC-1155 (Multi-Token standard).
+How NFTs and Tokens Conquer the Physical World
+Digital Ownership Revolution: NFTs create provable, immutable ownership by recording the deed on a decentralized, public, cryptographically-secured ledger. This ownership is trustless, P2P, and enforceable by code, making it instantly verifiable globally, unlike fragile physical certificates that rely on fallible, centralized registries.
+Transforming Physical Assets (RWA Tokenization): Asset Tokenization is the process of representing a tangible asset (like real estate, art) as a blockchain-based token. The NFT acts as the digital, legal title/deed. This enables Fractional Ownership: a high-value asset's NFT is locked, and many fungible ERC-20 tokens are issued representing shares, bringing liquidity and accessibility to traditionally illiquid markets.
+New Economic Models:
+ * Direct Monetization: NFTs eliminate traditional intermediaries (record labels, galleries), allowing creators to sell directly to their global audience.
+ * Programmable Royalties: The smart contract automatically sends a set percentage (e.g., 5-10%) of all secondary market sales directly and perpetually back to the original creator.
+Breaking Physical Limitations: NFTs enable instant, global transfer of ownership regardless of geographic location. They eliminate the high costs and risks associated with physical storage and transportation of deeds.
+Interoperability and Composability: NFTs adhere to open standards (ERC-721), making them interoperable across different platforms (wallets, games). Composability means a single NFT can be used as art, an in-game asset and collateral for a DeFi loan, stacking functionality across the Web3 ecosystem.
+Real-World Examples and Case Studies
+Example 1: RealT
+ * What it is: Real Estate Fractionalization / Fungible Token (ERC-20)
+ * How it works: Property is put into an LLC; tokens representing shares of the LLC are minted. Tokens collect fractional rental income.
+ * Physical world connection: FTs represent a legally-backed fractional deed to a physical property in the U.S.
+ * Impact: Democratizes access to real estate investment; increases property liquidity.
+ * Blockchain: Ethereum, Gnosis Chain
+Example 2: NBA Top Shot
+ * What it is: Digital Collectibles/Moments / Non-Fungible Token (NFT)
+ * How it works: Collectible, uniquely numbered video highlights are sold as NFTs.
+ * Physical world connection: Replaces physical sports trading cards and provides verifiable digital scarcity.
+ * Impact: Created a massive new source of revenue and engagement for the NBA; established digital collectibles.
+ * Blockchain: Flow
+Example 3: Audius
+ * What it is: Decentralized Music Streaming / Fungible Token (AUDIO)
+ * How it works: Artists upload directly, retaining ownership. $AUDIO token is used for network governance and artist rewards.
+ * Physical world connection: Replaces centralized music labels and streaming platforms.
+ * Impact: Gives artists greater control and a higher share of revenue (no middleman).
+ * Blockchain: Solana, Ethereum
+Example 4: Nike/RTFKT
+ * What it is: Digital Fashion/Wearables / NFT (ERC-721)
+ * How it works: Digital sneaker NFTs often grant the owner the right to redeem the physical pair (phygital).
+ * Physical world connection: The NFT acts as the certificate of authenticity and purchase receipt for the physical luxury item.
+ * Impact: Creates a perpetual digital identity layer for physical assets; combats counterfeiting.
+ * Blockchain: Ethereum
+Example 5: POAP (Proof of Attendance Protocol)
+ * What it is: Digital Credentials / NFT (ERC-721)
+ * How it works: Unique NFTs minted to verify and record physical or virtual event attendance.
+ * Physical world connection: Replaces physical badges, tickets, and certificates.
+ * Impact: Builds a verifiable, non-transferable digital identity and reputation record.
+ * Blockchain: Gnosis Chain, Ethereum
+Comparison Table: Physical vs Digital Ownership
+| Feature | Traditional Physical Ownership | Digital Ownership (NFTs/Tokens) |
+|---|---|---|
+| Ownership Verification | Centralized, slow (title company, registry). | Decentralized, instantaneous (smart contract query). |
+| Transfer Speed | Slow (days/weeks); requires intermediaries. | Fast (seconds/minutes); P2P. |
+| Transfer Cost | High intermediary fees, taxes, legal costs. | Low network gas fees. |
+| Storage | Physical safe, vault, government archive. | Stored on the blockchain; custody is the owner's private key. |
+| Divisibility | Difficult; requires complex legal structures. | Easy; accomplished via locking NFT and minting fungible tokens. |
+| Global Accessibility | Restricted by physical location and jurisdiction. | Global, permissionless, 24/7 via the internet. |
+| Fraud Prevention | Reliant on physical security and trusted third parties. | Cryptographic security and immutable history; easy to verify authenticity. |
+| Intermediaries | High (brokers, lawyers, banks, notaries). | Low (Peer-to-peer, executed by code). |
+| Programmable Features | None (requires new legal contract for every change). | High (built-in royalties, automated vesting, access control). |
+Deep Analysis: The Future of Ownership
+NFTs fundamentally challenge traditional ownership by shifting authority from legal institutions to immutable code. While they offer unparalleled transparency and liquidity, their current limitation lies in their reliance on external legal frameworks to enforce rights over the physical world. Fungible tokens transform money into a programmable utility, enabling complex, automated economic systems.
+The risks of "tokenizing everything" include regulatory uncertainty and the inherent risks of smart contract security and key management. In the next 5-10 years, NFTs will evolve beyond art to become the standard for Real-World Asset tokenization (RWA) and verifiable digital identity (SBTs).
+I see NFTs and tokens having the biggest impact in Real-World Asset (RWA) Tokenization, particularly in Real Estate and the Supply Chain/Luxury Goods industries. The potential negative consequence is the hyper-financialization of non-financial assets. To ensure the benefits are widespread, we must prioritize building user-friendly self-custody solutions (e.g., social recovery wallets) and promoting open-source development and education globally.
+All Sources and References
+ * Ethereum Foundation. (n.d.). The Merge and Proof-of-Stake. Retrieved from ethereum.org/en/upgrades/merge/
+ * Nakamoto, S. (2008). Bitcoin: A Peer-to-Peer Electronic Cash System. Bitcoin Whitepaper.
+ * Solana Foundation. (n.d.). An Introduction to Proof of History. Retrieved from docs.solana.com
+ * Polygon Technology. (n.d.). Polygon PoS Architecture and Heimdall. Retrieved from docs.polygon.technology/docs/pos/architecture/
+ * Fine, D., & Schär, F. (2022). Tokenization of Real-World Assets. Working Paper.
+ * Buterin, V. (2022). Soulbound. Retrieved from vitalik.ca/general/2022/01/26/soulbound.html
+ * Dapper Labs. (n.d.). Flow Blockchain and NBA Top Shot. Retrieved from onflow.org/
+ * IOTA Foundation. (n.d.). The Tangle: A Distributed Ledger Without Blocks. Retrieved from docs.iota.org
+ * Heal, R., & Swirlds. (2016). Hedera Hashgraph: The Distributed Ledger of the Future. Whitepaper.
+ * OpenZeppelin. (n.d.). ERC-721 Token Standard and ERC-20 Token Standard. Retrieved from docs.openzeppelin.com/contracts/
+Twitter Thread: [https://x.com/KimV3rse_/status/1986810929162371181?t=Qir9EnMFy4LIEF_-E_BH0w&s=19]
