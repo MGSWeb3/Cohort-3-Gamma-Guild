@@ -1798,7 +1798,7 @@ On a blockchain like Ethereum, token transfers work like this:
 
  Step 1 — User signs a transaction
 Your wallet (MetaMask, Phantom, etc.) prepares a function call:
-You sign it with your private key.
+You sign it with your private key
 
  Step 2 — The transaction is sent to the blockchain
 Nodes receive it and add it to the mempool.
