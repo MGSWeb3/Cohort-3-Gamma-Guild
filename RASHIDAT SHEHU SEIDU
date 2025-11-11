@@ -1,0 +1,73 @@
+Name: Rashidat
+Cohort: Gamma Guild – Cohort 3
+Date: November 7, 2025
+
+
+1. Overview
+
+This research explains the structure of blockchain infrastructure, the concept of distributed ledgers, and how NFTs and tokens are changing the idea of ownership. It examines four popular blockchains—Bitcoin, Ethereum, Solana, and Polkadot—focusing on their nodes, clients, and consensus mechanisms. The study also compares distributed ledgers with blockchains, analyzes real-world examples of NFTs and fungible tokens, and explains how digital ownership is being transformed by blockchain technology.
+
+2. Blockchain Research
+
+1. Bitcoin:
+Bitcoin is the first and most well-known blockchain. It uses a network of full nodes and lightweight (SPV) nodes that verify transactions. The main client software used to run nodes is Bitcoin Core. Bitcoin uses the Proof of Work (PoW) consensus mechanism, where miners solve cryptographic puzzles to add new blocks. It is highly secure and decentralized but consumes large amounts of energy.
+
+2. Ethereum:
+Ethereum is a programmable blockchain that allows smart contracts and decentralized applications (DApps). It has full, archive, and light nodes. The most common clients are Geth, Nethermind, and Besu. Ethereum now uses the Proof of Stake (PoS) consensus mechanism, where validators are chosen to confirm transactions based on the amount of ETH they stake. It supports NFTs, DeFi, and many Web3 projects.
+
+3. Solana:
+Solana is designed for high-speed transactions and low fees. It uses validator nodes and RPC nodes. The Solana Labs validator client runs the software. Solana’s consensus mechanism combines Proof of History (PoH) with Proof of Stake (PoS). This combination allows it to process thousands of transactions per second, making it one of the fastest blockchains.
+
+4. Polkadot:
+Polkadot connects multiple blockchains in one ecosystem. It has validator, collator, nominator, and fisherman nodes. The Parity Polkadot client is the main software used. It uses Nominated Proof of Stake (NPoS) as its consensus mechanism, which ensures security while supporting interoperability between different blockchains.
+
+3. Comparison Table of Blockchains
+
+Blockchain	Types of Nodes	Main Client	Consensus Mechanism	Unique Feature
+
+Bitcoin	Full, SPV nodes	Bitcoin Core	Proof of Work	Secure, decentralized, energy intensive
+Ethereum	Full, archive, light nodes	Geth, Nethermind, Besu	Proof of Stake	Smart contracts, NFTs, DeFi ecosystem
+Solana	Validator, RPC nodes	Solana Validator	Proof of History + Proof of Stake	Fast transactions, low fees
+Polkadot	Validators, nominators, collators	Parity Polkadot	Nominated Proof of Stake	Multi-chain interoperability
+
+
+4. Distributed Ledgers vs Blockchains
+
+A distributed ledger is a shared database that exists across multiple locations or participants. A blockchain is a specific type of distributed ledger that stores data in blocks linked together in chronological order. While all blockchains are distributed ledgers, not all distributed ledgers use blockchain structures.
+
+Comparison Table
+
+Feature	Distributed Ledger	Blockchain
+
+Structure	Shared database, flexible format	Data stored in linked blocks
+Immutability	Can be edited under certain rules	Permanent once confirmed
+Consensus	Not always required	Always uses consensus (PoW, PoS, etc.)
+Transparency	Can be private or permissioned	Usually public
+Use Cases	Banking, supply chains	Cryptocurrencies, NFTs, DeFi
+
+
+In short, distributed ledgers are broader systems, while blockchains are a special type that emphasize immutability and decentralization.
+
+5. NFTs and Fungible Tokens
+
+NFTs (Non-Fungible Tokens):
+NFTs represent unique digital assets that cannot be replaced by another token. They are often used for art, music, videos, game items, and digital collectibles. Each NFT is one-of-a-kind and is verified on the blockchain to prove ownership.
+
+Fungible Tokens:
+Fungible tokens are interchangeable and have equal value. Examples include cryptocurrencies like Bitcoin, Ether, and stablecoins like USDC. Each token is identical to another of the same kind.
+
+
+6. Real-World Examples of NFTs and Tokens
+
+Type	Example	Description	Blockchain
+
+NFT	Bored Ape Yacht Club	Digital art and collectibles	Ethereum
+NFT	NBA Top Shot	Sports highlight videos	Flow
+Fungible Token	USDC	Stablecoin pegged to the U.S. dollar	Ethereum / Solana
+Fungible Token	UNI	Governance token for Uniswap	Ethereum
+NFT	Axie Infinity NFTs	Game characters and digital pets	Ronin / Ethereum
+
+
+7. How NFTs and Tokens Change Ownership
+
+NFTs and tokens have created a new form of ownership. Digital assets can now be owned, traded, and verified directly on the blockchain without intermediaries like banks or companies. Creators can receive royalties automatically whenever their NFTs are resold. Fungible tokens enable decentralized finance, making global transactions faster and more open.
