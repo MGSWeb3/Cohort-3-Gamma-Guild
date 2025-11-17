@@ -1,0 +1,326 @@
+# **My Web3 Journey – Week 1 Day 2 Assignment**
+
+**By: Hannah Chiemeka**
+**X Profile:** https://x.com/hannah_chiemeka/status/1987690463692824726?s=20
+
+---
+
+# **Blockchain Infrastructure, Distributed Ledgers & Digital Ownership**
+
+This document explores blockchain infrastructure, distributed ledger technologies (DLTs), NFT and token standards, ownership models, real-world use cases, and the mechanics that make Web3 systems function. The goal is to understand how decentralized systems achieve trust, security, transparency, and verifiable ownership.
+
+---
+
+# ## **1. Blockchain Infrastructure**
+
+A blockchain’s infrastructure consists of nodes, clients, consensus protocols, validators, hardware, block production rules, and economic incentives. This section analyzes **Ethereum**, **Solana**, **Polkadot**, and **Hyperledger Fabric**.
+
+---
+
+# ### **1.1 Ethereum**
+
+Ethereum is a decentralized, permissionless, smart contract blockchain using a **modular architecture** of execution + consensus clients. It transitioned to **Proof of Stake (PoS)** after the Merge.
+
+### **Node Types**
+
+* **Full Nodes:** Verify all transactions, maintain full state.
+* **Validator Nodes:** Stake 32 ETH to propose blocks and attest.
+* **Archive Nodes:** Store full historical data.
+* **Light Clients:** Sync minimal data.
+
+### **Execution Clients**
+
+* **Geth**
+* **Nethermind**
+* **Erigon**
+* **Besu**
+
+### **Consensus Clients**
+
+* Prysm
+* Lighthouse
+* Teku
+* Nimbus
+
+### **Validator Requirements**
+
+* **Stake:** 32 ETH
+* **Hardware:**
+
+  * 2–4+ core CPU
+  * 16–32 GB RAM
+  * 2 TB NVMe SSD
+* Stable internet: 25+ Mbps
+* Must run both execution + consensus clients
+
+### **Performance Metrics**
+
+| Metric     | Value                                        |
+| ---------- | -------------------------------------------- |
+| Block Time | ~12 seconds                                  |
+| TPS        | ~15                                          |
+| Finality   | 12.8 minutes (2 epochs)                      |
+| Fee Model  | Gas (variable), EIP-1559 base fee + priority |
+
+---
+
+# ### **1.2 Solana**
+
+### **Architecture Overview**
+
+Solana uses **Proof of History (PoH)** + **Tower BFT** to achieve high throughput. Its design focuses on parallel execution via **Sealevel**.
+
+### **Node Roles**
+
+* **Validators:** Produce blocks, vote on blocks, maintain state.
+* **RPC Nodes:** Serve external requests.
+* **Archivers:** Store data segments.
+
+### **Hardware Requirements (High)**
+
+* **CPU:** 12–16 cores
+* **RAM:** 128 GB
+* **SSD:** 1–2 TB NVMe (high write)
+* **Bandwidth:** 1 Gbps
+
+### **Validator Costs**
+
+* No fixed stake; but practical minimum is **500–2,000 SOL** delegated to remain competitive.
+
+### **Performance Metrics**
+
+| Metric     | Value                      |
+| ---------- | -------------------------- |
+| TPS        | 4,000–5,000+ (real world)  |
+| Block Time | ~400–600 ms                |
+| Finality   | 2–3 seconds                |
+| Fee Model  | Compute units + micro-fees |
+
+---
+
+# ### **1.3 Polkadot**
+
+### **Architecture Overview**
+
+Polkadot is a **multi-chain network** built on **Substrate**, enabling parachains to connect to a central **Relay Chain** for shared security.
+
+### **Node Types**
+
+* **Validators:** Secure relay chain and validate parachain blocks.
+* **Collators:** Produce parachain blocks.
+* **Nominators:** Stake DOT to support validators.
+* **Fishermen:** Monitor network for fraud.
+
+### **Consensus**
+
+* **BABE** (block production)
+* **GRANDPA** (finality)
+
+### **Parachain Context**
+
+Projects must win **parachain auctions** through DOT bonding or crowdloans.
+
+### **Performance Metrics**
+
+| Metric     | Value                                |
+| ---------- | ------------------------------------ |
+| TPS        | 1,000+ (relay + parachains combined) |
+| Block Time | 6 seconds                            |
+| Finality   | ~12–30 seconds                       |
+
+### **Validator Requirements**
+
+* Powerful CPU
+* 16–64 GB RAM
+* NVMe SSD
+* Bonding DOT depends on supply/demand
+
+---
+
+# ### **1.4 Hyperledger Fabric**
+
+### **Architecture Overview**
+
+Fabric is a **permissioned enterprise blockchain**, designed for private networks, supply chains, logistics, banking, and enterprise applications.
+
+### **Node Roles**
+
+* **Peers:** Host ledgers and smart contracts (chaincode)
+
+  * Endorsing Peers
+  * Committing Peers
+* **Orderers:** Handle transaction ordering
+* **Membership Service Provider (MSP):** Controls identity and permissioning
+
+### **Key Concept**
+
+* **Identity is required** (permissioned).
+* Supports **private channels** and confidential data.
+
+### **Performance Metrics**
+
+| Metric     | Value                               |
+| ---------- | ----------------------------------- |
+| TPS        | 3,000+ (depending on configuration) |
+| Block Time | Configurable                        |
+| Finality   | Immediate after commit              |
+
+---
+
+# ## **2. Blockchain Comparison Table**
+
+| Feature    | Ethereum               | Solana                 | Polkadot            | Hyperledger Fabric |
+| ---------- | ---------------------- | ---------------------- | ------------------- | ------------------ |
+| Type       | Public, Permissionless | Public, Permissionless | Public, Multi-chain | Permissioned       |
+| Consensus  | PoS / Gasper           | PoH + Tower BFT        | BABE + GRANDPA      | Raft / Kafka       |
+| TPS        | ~15                    | 4,000+                 | ~1,000              | 3,000+             |
+| Finality   | ~12.8 mins             | 2–3 sec                | 12–30 sec           | Instant            |
+| Block Time | 12s                    | 400–600ms              | 6s                  | Configurable       |
+| Staking    | 32 ETH                 | Delegated              | DOT bonding         | MSP Identity       |
+| Use Cases  | DeFi, NFTs             | Payments, DeFi, games  | Interoperability    | Enterprise         |
+
+---
+
+# ## **3. Distributed Ledgers vs Blockchains**
+
+### **DLT Definition**
+
+A distributed ledger is a replicated database shared across multiple nodes, where participants maintain synchronized records without a central authority.
+
+### **Blockchain Definition**
+
+A blockchain is a **special type of DLT** where data is stored in **linked blocks** secured by cryptography and consensus.
+
+---
+
+# ### **3.1 Key Differences Table**
+
+| Feature      | DLT                           | Blockchain             |
+| ------------ | ----------------------------- | ---------------------- |
+| Structure    | Could be DAG, hashgraph, etc. | Always blocks          |
+| Consensus    | Not always decentralized      | Always consensus-based |
+| Immutability | Optional                      | Strong immutability    |
+| Speed        | Can be higher                 | Varies                 |
+| Use Cases    | Enterprise systems            | Crypto, DeFi, NFTs     |
+
+---
+
+# ### **3.2 Examples of Non-Blockchain DLTs**
+
+* **Hedera Hashgraph:** Gossip about gossip + virtual voting
+* **Corda:** Point-to-point communication, not global broadcast
+* **IOTA Tangle:** Directed Acyclic Graph (DAG)
+
+---
+
+# ### **3.3 Trust Assumptions**
+
+* **Permissionless Chains:**
+
+  * Open validator set
+  * Economic trust (stake)
+  * Sybil resistance
+
+* **Permissioned DLTs:**
+
+  * Identity-based trust
+  * Centralized governance
+  * Less hostile environment
+
+---
+
+# ## **4. NFTs & Tokens**
+
+### **Token Standards**
+
+| Standard   | Chain    | Use                               |
+| ---------- | -------- | --------------------------------- |
+| ERC-20     | Ethereum | Fungible tokens                   |
+| ERC-721    | Ethereum | Unique NFTs                       |
+| ERC-1155   | Ethereum | Batch NFTs & semi-fungible tokens |
+| SPL Tokens | Solana   | Fungible/NFT equivalents          |
+| FA2        | Tezos    | Multi-asset standard              |
+
+---
+
+# ### **4.1 ERC-721 vs ERC-1155**
+
+| Feature         | ERC-721            | ERC-1155               |
+| --------------- | ------------------ | ---------------------- |
+| Type            | Non-fungible       | Multi-fungible / batch |
+| Gas Efficiency  | Lower              | Higher                 |
+| Batch Transfers | No                 | Yes                    |
+| Ideal For       | Art, unique assets | Gaming, multiple items |
+
+---
+
+# ### **4.2 NFT Ownership Flow**
+
+1. Minting creates token on smart contract
+2. Token ID + metadata assigned
+3. Ownership updated on-chain
+4. Marketplaces display metadata
+5. Transfers update token owner
+
+---
+
+# ### **4.3 Risks**
+
+* **Off-chain metadata:** IPFS gateways may fail
+* **Royalty inconsistencies:** Not enforceable on-chain
+* **Copyright confusion:** Buying NFT ≠ owning rights
+* **Smart contract vulnerabilities**
+
+---
+
+# ## **5. Real-World Examples**
+
+### **1. Flow Blockchain (NBA Top Shot)**
+
+* Uses **multi-role architecture:**
+
+  * Consensus Nodes
+  * Execution Nodes
+  * Verification Nodes
+  * Collection Nodes
+* Enables high-performance NFT apps
+
+### **2. CryptoPunks**
+
+* Early, on-chain generative NFT collection
+
+### **3. Bored Ape Yacht Club (BAYC)**
+
+* Brand-driven ecosystem
+* Large secondary royalty revenues
+
+### **4. Axie Infinity**
+
+* Uses dual-token model: **AXS + SLP**
+* Faced hyperinflation issues in SLP supply
+
+### **5. Decentraland LAND**
+
+* Virtual real estate NFTs
+
+---
+
+# ## **6. Summary & Insights**
+
+This research highlights how blockchains differ in performance, architecture, and economics, as well as how they compare with broader DLT systems. Understanding NFT standards, metadata risks, validator requirements, execution models, and cross-chain differences is crucial for building in Web3.
+
+---
+
+# ## **7. References**
+
+> **Primary documentation sources used:**
+
+* Ethereum Docs
+* Solana Docs
+* Polkadot/Substrate Docs
+* Hyperledger Fabric Docs
+* Flow Technical Paper
+* OpenSea Developer Docs
+* Hedera Hashgraph Docs
+* Corda R3 Documentation
+
