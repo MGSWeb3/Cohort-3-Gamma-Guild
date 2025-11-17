@@ -19,8 +19,6 @@ A blockchain’s infrastructure consists of nodes, clients, consensus protocols,
 
 # ### **1.1 Ethereum**
 
-### **Architecture Overview**
-
 Ethereum is a decentralized, permissionless, smart contract blockchain using a **modular architecture** of execution + consensus clients. It transitioned to **Proof of Stake (PoS)** after the Merge.
 
 ### **Node Types**
