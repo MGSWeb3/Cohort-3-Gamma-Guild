@@ -1,0 +1,172 @@
+Week 1 Day 2 — Blockchain infrastructure, DLTs, and how NFTs / tokens change ownership
+
+=> Question 1: Do a Quick Executive Summary
+Blockchains are a type of distributed ledger where data is grouped in blocks and linked cryptographically; different blockchains use different node types, client software, and consensus algorithms (PoW, PoS variants, hybrid designs). 
+
+Distributed Ledger Technology (DLT) is the umbrella term — includes blockchains, DAGs, Hashgraph, permissioned ledgers (Hyperledger). Not all DLTs chain data as blocks. 
+
+NFTs (non-fungible tokens) are smart-contract tokens that represent unique items (usually ERC-721 / ERC-1155 on Ethereum). Fungible tokens (ERC-20 etc.) represent interchangeable units (currencies, governance tokens, stablecoins). Both change ownership by updating ledger state via transactions; marketplaces and smart contracts often automate transfer and provenance tracking. 
+
+
+=> Question 2: Researched blockchains — nodes, common clients, consensus (4+)
+
+Blockchains covered: Bitcoin, Ethereum, Solana, Polkadot, Cardano, and a permissioned DLT example Hyperledger Fabric.
+
+Blockchain/ Node types / roles/ Popular client implementations/ Consensus mechanism (short)/ Notes/
+
+Bitcoin/ Full nodes,/ SPV/light clients, miners (PoW miners)/ Bitcoin Core (full), many forks/tools/ Proof-of-Work (SHA-256 mining): miners produce blocks; longest valid chain wins/ Simple UTXO model; highly decentralized; energy-intensive PoW./
+Ethereum/ (post-Merge)/ Execution clients (E),/ Consensus Beacon clients (C), Validators/ Execution: Geth, Besu, Nethermind. Consensus: Prysm, Teku, Lighthouse, Nimbus./ Proof-of-Stake (Beacon chain + execution layer). Validators attest & propose; finality via Casper-style LMD-GHOST + finality gadget./ Node stack often separated: execution + consensus + optional validator./
+Solana/ Validator nodes, RPC nodes, Archivers/ solana-validator/ Proof of History (PoH) + PoS + Tower BFT: PoH provides verifiable timestamping; Tower BFT finalizes blocks./ Architected for very high throughput & low latency; unique PoH clocking./
+Polkadot/ Validators, Nominators, Collators (parachain side),Fishermen/ Polkadot client (parity-based), Substrate-based node implementations/ Nominated Proof of Stake (NPoS): staking + nominators select validators; GRANDPA finality + BABE block production/ Relay-chain + parachain architecture for shared security & interoperability./
+Cardano/ Stake pool operators (SPOs), relay nodes, block producers/ cardano-node (official)/ Ouroboros family (PoS): epoch/slot leader election with provable security/ Research-driven PoS with formal proofs (Ouroboros variants). 
+Hyperledger Fabric (permissioned DLT)/ Peers, orderers (ordering service), endorsing peers, clients/ Hyperledger Fabric official implementations (Go/Java)/ Pluggable consensus (e.g., Raft, Kafka previously, PBFT-like implementations) — deterministic ordering by ordering service/ Permissioned model: identity & access control, private channels, not native cryptocurrency. Good for enterprise supply chains. 
+
+
+=> Question 3: Distributed Ledgers vs Blockchains — clear comparison
+Short answer: All blockchains are distributed ledgers, but not all distributed ledgers are blockchains. Blockchains organize data into cryptographically linked blocks; other DLTs (DAGs, hashgraph, permissioned ledgers) may use different structures and consensus properties. 
+
+Key differences (table):
+
+Feature/ Blockchain (public)/ Distributed Ledger (DLT, general)
+
+Data structure/ Linear chain of blocks (linked by hashes)/ May be blocks, DAGs, directed graphs, or ordered ledgers/
+Typical consensus/	PoW/PoS variants, proof hybrids/ Variety: BFT, PoS, deterministic ordering, etc./
+Permission model/ Often permissionless (public)/ Often permissioned for enterprise use (e.g., Hyperledger)/
+Immutability/ High (append-only chain + cryptographic link/ Varies (many DLTs still append-only but governance may allow modifications in permissioned setups)/
+Use cases/ Cryptocurrencies, open smart contracts, NFTs/ Enterprise applications Supply chain, private settlement, interbank recordkeeping/
+Example/ tech	Bitcoin, Ethereum, Solana/ Hyperledger Fabric, Hedera, IOTA (DAG)/ 
+
+Implication for ownership: On blockchains, ownership is usually a ledger state (address balance / token-ID holder) — the chain provides provenance and public verification. Permissioned DLTs may record ownership but access, identity, and governance rules differ (e.g., legal identity attached to ledger entries). 
+
+
+=> Question 4: NFTs and fungible tokens — how they change ownership (mechanics + real-world examples)
+
+=> How Ownership Changes Technically
+
+Fungible tokens (ERC-20 style): balance mapping in the contract is updated by transfer operations. Ownership is a numeric balance associated with addresses; transfers are atomic transactions. 
+
+NFTs (ERC-721 / ERC-1155): ownership stored per token ID (ownerOf). Transfer functions update token ownership and emit Transfer events; metadata (often stored off-chain via IPFS or pinned URIs) describe the asset. Marketplaces invoke the ERC transfer logic (or use approved operator patterns) so purchase = contract transfer. 
+
+
+Legal/real-world note: Blockchain ownership shows who controls the private key for a token ID / address. Commercial or copyright ownership (IP rights) may be separate unless explicitly conveyed by the project. Marketplaces and smart contracts can convey rights (e.g., commercial use licenses) in contract metadata or TOS. 
+
+
+
+=> Real-world examples (5+), each with quick analysis of token type & how ownership is effected
+
+1. CryptoPunks (Ethereum, ERC-721-like collection)
+
+Type: NFT collection (unique pixel portraits). Ownership recorded on Ethereum; transfers executed via smart contract; provenance visible on-chain. Example of cultural/digital-art ownership and provenance. 
+
+
+
+2. Bored Ape Yacht Club (BAYC) (Ethereum, ERC-721)
+
+Type: NFT collection that also grants certain owner privileges (community access, merch, events). Ownership change is on-chain; holders sometimes use IP rights for merchandising under the project's grants. Shows NFTs enabling community membership access. 
+
+
+
+3. NBA Top Shot (Flow blockchain, Moment NFTs)
+
+Type: NFT "Moments" (video highlight collectibles) on Flow. Ownership recorded on Flow; custody/market features built by Dapper Labs; collectors buy/sell on marketplace; Flow designed to make collectible UX friendlier (scalability & lower costs). Shows NFTs as licensed sports collectibles. 
+
+
+
+4. Axie Infinity (Axies on Ronin/Ethereum ecosystem)
+
+Type: Game NFTs (Axies) + in-game fungible tokens (AXS, SLP). Players buy Axies (NFTs) and earn fungible tokens via gameplay; marketplace transfers NFT ownership when trade occurs; demonstrates play-to-earn where NFTs enable digital asset ownership used for economic activity. Also a cautionary example: bridge & security risks (Ronin hack). 
+
+
+
+5. USDC / USDT (Fungible stablecoins, ERC-20 / multi-chain)
+
+Type: Fungible tokens (stablecoins). Ownership change is ledger update (ERC-20 transfer). These tokens represent value and are interchangeable — used as medium of exchange, liquidity, payment rails. Demonstrates fungible tokens changing monetary ownership instantly on-chain. 
+
+
+
+6. Art Blocks (Generative art NFTs on Ethereum)
+
+Type: Programmatically generated NFTs (ERC-721). Ownership & provenance on-chain; creator royalties & on-chain data examples show how smart contracts automate resale royalties and provenance tracking. 
+
+
+
+7. Uniswap UNI (governance token, ERC-20)
+
+Type: Fungible governance token. Ownership confers governance voting rights; transfers change who holds governance weight. Example of fungible tokens changing control/voice in protocols. 
+
+
+
+=> Question 5: Comparables — NFTs vs Fungible tokens (
+
+Aspect/ NFTs (ERC-721 / ERC-1155)/ Fungible tokens (ERC-20)/
+
+Uniqueness/ Each token ID is unique (non-interchangeable)/	Tokens are interchangeable; 1 token = any other token unit/
+Ownership Record/ Owner Of(tokenId) on contract; explicit provenance/ balance of(address) mapping; balances change by transfer/
+Typical use cases/ Collectibles, art, in-game items, identity, tickets/ Currency, stablecoins, governance, utility, rewards/
+Transfer semantics/ Transfer specific token IDs; may include metadata/	Transfer arbitrary amount; divisible/
+Standards/ ERC-721,/ ERC-1155 (multi)	ERC-20/
+Royalties & metadata/	Often include metadata URIs; royalty patterns implemented on marketplaces/	Metadata limited; royalties uncommon at token level/
+Market behavior/ Liquidity varies; marketplaces list items/ High liquidity across DEXs & exchanges/
+
+
+=> Question 6: Comparison table — Blockchains
+
+Blockchain/ Consensus/	Typical node/client stack	/ Best use-cases
+
+Bitcoin	/ PoW (SHA-256)	/ Bitcoin Core full node; SPV wallets/	Sound money, high security store of value. /
+Ethereum/ PoS (Beacon/execution split)/	Execution clients (Geth/Besu), Consensus (Prysm/Lighthouse)/	Smart contracts, DeFi, large NFT ecosystem./
+Solana/ PoH + PoS + Tower BFT/ solana-validator/	High throughput apps, low-latency trading/games./
+Polkadot/ NPoS + GRANDPA/BABE/ Polkadot/Substrate nodes/ Interoperability (parachains), shared security. 
+Cardano/Ouroboros PoS/ cardano-node/ Research-backed PoS, academic use-cases./
+Hyperledger Fabric/ Pluggable BFT/Raft/ Fabric peers & orderers/ Enterprise private ledgers, supply chain. 
+
+
+
+=> Question 8: Highlight References Used
+
+
+1. Bitcoin dev guide — Blockchain overview / nodes. 
+
+
+2. BitPay — Bitcoin nodes explained. 
+
+
+3. Ethereum docs — Nodes & clients (execution + consensus). 
+
+
+4. Prysm / consensus client notes (Ethereum validator docs). 
+
+
+5. Solana — Proof of History / Tower BFT / validator setup. 
+
+
+6. Polkadot docs — NPoS consensus explanation. 
+
+
+7. Cardano — Ouroboros PoS overview. 
+
+
+8. Hyperledger Fabric docs — What is Fabric / orderer & peers. 
+
+
+9. Consensus article — Blockchain vs DLT explainer. 
+
+
+10. OpenZeppelin — ERC-721 (NFT standard). 
+
+
+11. OpenZeppelin / OpenEthereum — ERC-20 docs (fungible token standard). 
+
+
+12. ERC-1155 multi-token standard (Ethereum docs). 
+
+
+13. OpenSea — NFT primer and metadata/marketplace notes. 
+
+
+14. NBA Top Shot explainer (Gemini / NFT guides). 
+
+
+15. Axie Infinity official / coverage & Ronin bridge hack coverage (security risks). 
+
+
