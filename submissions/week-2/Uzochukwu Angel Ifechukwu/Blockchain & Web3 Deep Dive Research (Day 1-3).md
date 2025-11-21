@@ -1,3 +1,12 @@
+![1000341107](https://github.com/user-attachments/assets/64d8d6dc-0a57-4656-b956-37ff396d4640)
+![1000341077](https://github.com/user-attachments/assets/83c90cd7-c327-4df0-ab39-7660431aeb3c)
+![1000341107](https://github.com/user-attachments/assets/5da8fcc4-316f-4ab2-99a0-9c3399f2a9b7)
+![1000341141](https://github.com/user-attachments/assets/ea05ce0d-0f75-4df0-bee1-fbf2e8c41a08)
+![1000341111](https://github.com/user-attachments/assets/dfc390ef-1f84-4aba-8bc7-bd397a766637)
+![1000341107](https://github.com/user-attachments/assets/43789673-675b-4ecf-be46-f8ad8165fe37)
+![1000341077](https://github.com/user-attachments/assets/e1953e6c-9ae5-4584-814d-a7457d56c0f2)
+![1000341141](https://github.com/user-attachments/assets/30bc0ef2-5773-45ba-89c5-f05f357b6568)
+![1000341111](https://github.com/user-attachments/assets/821ad8ed-7f88-499d-8e15-bd8e53e91d9a)
 ## Week 2: Blockchain & Web3 Deep Dive Research (Day 1-3)
 ## Student Name: Uzochukwu Angel Ifechukwu 
 Date: Wednesday, 19th November, 2025  
