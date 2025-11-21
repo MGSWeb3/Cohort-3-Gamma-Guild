@@ -1,9 +1,9 @@
-Week 2: Blockchain & Web3 Deep Dive Research (Day 1-3)
-**Student Name:** Uzochukwu Angel Ifechukwu 
+## Week 2: Blockchain & Web3 Deep Dive Research (Day 1-3)
+## Student Name: Uzochukwu Angel Ifechukwu 
 Date: Wednesday, 19th November, 2025  
 **Tweet Link:** [Your Twitter thread link - add after posting]
 
-**Consensus Mechanisms Deep Dive: Proof of Work vs Proof of Stake**
+### Consensus Mechanisms Deep Dive: Proof of Work vs Proof of Stake ##
 
 # 1. Proof of Work (PoW) Analysis
 **How PoW Works**
@@ -1377,7 +1377,7 @@ The "best" blockchain is the one where your collectors are, where you can afford
 
 ## 1. Gas Economics
 
-### What is Gas?
+# What is Gas?
 Gas is the unit that measures the computational work required to execute operations on a blockchain network. Think of it as fuel for the blockchain engine—just as your car needs gasoline to travel a certain distance, blockchain transactions need gas to execute operations. Every action on the blockchain, from simple transfers to complex smart contract executions, requires a specific amount of computational resources, and gas quantifies these requirements.
 
 **Why Is It Called "Gas"?**
@@ -1621,7 +1621,7 @@ Most wallets now automatically:
 - Show total cost estimate before confirmation
 - Use EIP-1559 with max fee to prevent overpaying
 
-### Gas Calculation
+# Gas Calculation
 
 **How is Total Transaction Cost Calculated?**
 
@@ -2467,7 +2467,6 @@ Blocks don’t hold a fixed number of transactions — they fill up until they r
 * **gas limit** (Ethereum-style chains), or
 * **block size** (Bitcoin-style chains).
 
----
 
  **4. How Blocks Link Together (the “chain” part)**
 
@@ -2489,7 +2488,6 @@ If someone tries to change *any* data in Block 100, its hash changes — meaning
 
 To fake history, someone would need to rebuild all blocks after it. On real blockchains, that’s practically impossible.
 
----
 
  **5. Block Time (the drumbeat of the chain)**
 
@@ -2507,7 +2505,6 @@ Each blockchain has a rhythm:
 * Faster block time → quicker transaction inclusion.
 * But extremely fast blocks require powerful network infrastructure to avoid forks.
 
----
 
  **6. Finality (when a block becomes “untouchable”)**
 
@@ -2518,10 +2515,464 @@ There are two kinds:
 *(Bitcoin/Ethereum style)*
 More confirmations → less chance of a reorg.
 
-## Deterministic Finality
+# Deterministic Finality
 
 *(Tendermint, many PoS chains)*
 Once validators sign, the block becomes irreversible instantly.
+
+Nice — I’ll cover **Part 3: Wallet Security & Types** in a single, practical, well-sourced guide you can use for study or to share. I’ll include definitions, technical notes, examples, comparison tables, recommended strategies, and a clear security checklist with emergency steps. I used up-to-date, authoritative sources and cite the most important claims inline.
+
+
+### Part 3 — Wallet Security & Types
+
+## 1) Custodial vs Non-Custodial Wallets
+
+## Custodial wallets — quick definition
+
+**What they are:** Wallets where a third party (an exchange, custodian, or service) holds and manages the private keys on your behalf. You trust the provider to custody and secure keys and to execute transactions for you. 
+
+**How they work (technically):**
+
+* Provider generates and stores private keys (often in multi-user HSMs or custodial key stores).
+* Your account is represented by an internal ledger entry at the provider; on-chain transactions are executed by the provider’s systems.
+* Authentication for you is via username/password + 2FA; recovery is provider-managed (KYC, account recovery flows).
+  
+**Advantages**
+
+* Convenience and beginner-friendly (no private-key management).
+* Integrated fiat on/off ramps, customer support, and built-in recovery flows.
+* Can offer custodial features like insured hot wallets and compliance tools.
+
+**Risks**
+
+* You don’t control private keys → “not your keys, not your crypto.”
+* Centralized attack surface: breaches, insider threats, insolvency, regulatory seizure.
+* Potential withdrawal limits, KYC/privacy tradeoffs.
+  
+**5 examples of custodial wallet providers**
+
+* Coinbase (Custodial wallets via exchange accounts). 
+* Binance (exchange wallet custodial). 
+* Kraken (exchange custodial services).
+* Gemini (exchange/custody services).
+* Blockchain.com (offers custodial/hosted services alongside non-custodial options).
+  (These are industry-standard examples — see provider docs for exact custody models.)
+
+## Non-custodial wallets — quick definition
+
+**What they are:** Wallets where the user controls their private keys (self-custody). The wallet software or hardware stores/generates keys locally and the user is solely responsible for backups and recovery. 
+
+**How they work (technically):**
+
+* Wallet creates a private key or a deterministic seed phrase (BIP39 etc.) locally.
+* Private key signs transactions locally; signed transactions are broadcast to the network.
+* Recovery uses seed phrase (mnemonic) to re-derive private keys. No central service has access. 
+
+**Advantages**
+
+* Full control and ownership of funds.
+* Better privacy (no KYC at wallet level), direct interaction with DeFi/dApps.
+* No custodial counterparty risk.
+
+**Risks**
+
+* You alone are responsible for key/seed security; loss or theft means irreversible loss.
+* User mistakes (phishing dapps, approving malicious contracts) can lead to instant loss.
+* Recovery is only as good as your seed backup practices. 
+
+**5 examples of non-custodial wallet providers**
+
+* MetaMask (browser/mobile Ethereum & EVM wallet).
+* Exodus (desktop/mobile non-custodial).
+* Argent (smart-contract wallet with social recovery for Ethereum).
+* Rainbow (Ethereum mobile wallet).
+  (Always confirm current features on each provider’s website.)
+  
+## Comparison table — Custodial vs Non-custodial
+
+| Feature            |                                       Custodial | Non-custodial                                             |
+| ------------------ | ----------------------------------------------: | --------------------------------------------------------- |
+| **Key control**    |                     Provider holds private keys | User holds private keys / seed                            |
+| **Security model** |      Centralized: provider security / insurance | Decentralized: relies on user practices & device security |
+| **Convenience**    |                High — easy sign-in, fiat on/off | Moderate — needs key backup, more steps                   |
+| **Recovery**       |                          Provider-managed (KYC) | Seed phrase / backup only                                 |
+| **Privacy**        |                               Lower (KYC, logs) | Higher (no KYC required at wallet)                        |
+| **Best for**       | Beginners, frequent trading, custodial services | Users needing full control, DeFi power users              |
+| **Risk**           |         Exchange hack/seizure, platform failure | User error, phishing, lost seed = irreversible loss       |
+
+
+# When to use each
+
+**Scenarios favoring custodial wallets**
+
+* You want easy fiat on/off and fiat custody (buy/sell quickly).
+* You prefer customer support and built-in recovery.
+* Smaller amounts for trading or payments where convenience matters.
+
+**Scenarios requiring non-custodial wallets**
+
+* You need complete control over keys (self-custody).
+* You plan to interact with DeFi, NFTs, or dApps where signing with your own key is required.
+* You want privacy and to avoid counterparty risk.
+
+**Recommended strategy for beginners**
+
+* Start with custodial wallets (regulated exchange) for learning and small amounts; move larger balances to non-custodial cold storage as you learn. Use two accounts: (1) custodial exchange for trading, (2) non-custodial hardware wallet for long-term holdings.
+
+**Recommended strategy for active Web3 users**
+
+* Use a hybrid setup: hardware wallet (cold) for long-term holdings and big-value multisig, and a non-custodial hot wallet (software) for day-to-day DeFi interaction — but avoid keeping large balances in hot wallets. Use multisig and smart-contract wallets (e.g., Gnosis Safe) for higher security. 
+
+
+## 2) Hot vs Cold Wallets
+
+### Hot wallets
+
+**What they are:** Wallets connected to the internet (desktop, mobile, web extensions). Examples: browser extension wallets, mobile wallets, custodial exchange wallets. ([Trading 212]
+
+**How they work:** Private keys are stored on an internet-connected device or with a provider. They sign transactions and broadcast them directly online. ([Trust Wallet][6])
+
+**Security implications**
+
+* Easier target for online attacks: phishing, malware, browser exploits.
+* More convenient but less secure than offline storage; suitable for small/frequent amounts.
+
+**Best use cases**
+
+* Daily spending, small balances, interacting with dApps, trading, NFT minting.
+
+**3 hot wallet examples**
+
+* MetaMask (extension/mobile). 
+* Trust Wallet (mobile). 
+* Coinbase Wallet (mobile non-custodial, or Coinbase exchange for custodial). 
+
+
+## Cold wallets
+
+**What they are:** Wallets/offline devices not connected to the internet for private key storage (hardware wallets, paper wallets, air-gapped devices). ([Trading 212][8])
+
+**How hardware wallets work (high level):**
+
+* Hardware device generates and stores private keys inside secure chip.
+* Transaction data is sent to device; the device signs the transaction internally; only the signed transaction (not the private key) is returned to the host computer for broadcasting.
+* Verification screens on device help prevent blind approvals. 
+
+**Security benefits**
+
+* Private keys never leave the device; resistant to remote malware/theft.
+* If properly used, cold wallets are the strongest defense vs online attacks.
+
+**Limitations**
+
+* Less convenient for frequent transactions.
+* Physical theft or loss is possible; firmware bugs or supply-chain attacks (rare) exist; users must securely store recovery seed. 
+
+**3 hardware wallet examples**
+
+* Ledger Nano S / Nano X. 
+* Trezor Model T / One.
+* Coldcard / BitBox / others (Coldcard is Bitcoin-focused).
+  (Check vendor docs for firmware and model specifics.) 
+
+## Security & convenience comparison
+
+| Metric             |                             Hot Wallet | Cold Wallet                                      |
+| ------------------ | -------------------------------------: | ------------------------------------------------ |
+| **Security level** | Moderate/Lower (online attack surface) | High (offline private key storage)               |
+| **Convenience**    |   High (fast access, dApp interaction) | Low (manual connection, signing)                 |
+| **Cost**           |                Usually free (software) | Hardware purchase (~$50–$200+)                   |
+| **Use cases**      |              Daily use, trading, dApps | Long-term storage, large holdings, high security |
+
+
+# Recommended allocation strategy
+
+* **Small amounts / daily use:** Keep a modest balance in a hot wallet (amount you’re comfortable losing).
+* **Savings / long-term holdings:** Store the majority (e.g., 80–95%) in cold storage (hardware wallet or multisig cold setup).
+* **Middle ground for active users:** Use a hardware-backed hot wallet (Ledger + MetaMask) so you can sign transactions online without exposing private keys.
+* **For very large holdings:** Use multisig (multiple hardware wallets / custodial multisig providers) and geographic split of seeds. 
+
+*(Percentages are illustrative — adapt to your personal risk tolerance and liquidity needs.)*
+
+
+## 3) Security Best Practices
+
+## Seed phrase security
+
+**What is a seed phrase?**
+
+* A human-readable list of words (usually 12–24) that encodes the deterministic master seed used to derive private keys (BIP-39 standard commonly used). It’s the master backup for wallet recovery. 
+
+**Why it’s critical**
+
+* Anyone with your seed can recreate your wallet and take all funds. No central authority can reverse theft. 
+
+**How to store it**
+
+* Write it on paper and store offline in a secure physical location (safe, safety deposit box). Ledger/Trezor recommend a physical copy. Consider metal backups for fire/water resistance. 
+* Do not store seed phrase digitally (no photos, plain text files, cloud storage, or email).
+* Consider split backups (Shamir’s Secret Sharing or multiple geographic copies) for large holdings.
+* Test recovery on a low-value wallet to validate the backup, never reveal words to anyone.
+
+**Common mistakes to avoid**
+
+* Taking photos of seed phrases.
+* Entering seed phrase into websites or browser prompts (phishing).
+* Storing it in password managers or cloud drives.
+* Typing it into a device that might be compromised.
+
+
+## Common attack vectors & defenses
+
+**Phishing**
+
+* Attack: Fake websites, emails, dApp popups trick you to enter seed or sign malicious transactions.
+* Defense: Bookmark official sites, manually type URLs, verify domain, never paste seed on websites, use hardware wallets for signing. See NIST phishing guidance. 
+
+**Malware**
+
+* Attack: Keyloggers, clipboard hijackers (replace copied address), remote access trojans.
+* Defense: Use hardware wallets (private keys never leave device), keep OS and antivirus updated, avoid downloading unknown software, use a dedicated device for large holdings.
+
+**Social engineering**
+
+* Attack: Scammers impersonate support, friends, or platforms to get you to reveal seed or move funds.
+* Defense: Never give seed to anyone, verify identities out-of-band, treat unsolicited support requests as suspicious.
+
+**Supply-chain attacks**
+
+* Attack: Tampered hardware devices or compromised firmware.
+* Defense: Buy devices from official channels, verify firmware signatures and device fingerprints, initialize devices yourself (do not use pre-initialized devices).
+
+**Malicious contract approvals**
+
+* Attack: Approving unlimited token allowances that let a contract drain tokens later.
+* Defense: Use wallet UI to limit approvals, review transactions before signing, use simulation tools, revoke allowances periodically.
+
+
+## Security checklist 
+
+# Wallet setup (one-time)
+
+1. **Choose wallet types**: Decide custodial vs non-custodial and hot vs cold according to needs.
+2. **Buy hardware from official store** (if using a hardware wallet). Verify packaging.
+3. **Initialize device offline**; create a new wallet and write down seed phrase **by hand** on paper/metal. Do not photograph or digitize.
+4. **Test recovery**: Restore seed on a spare device using a small test amount before moving large funds.
+5. **Enable 2FA** on custodial accounts (use authenticator app, not SMS). 
+6. **Set up a secondary recovery plan** (Shamir, multisig, or geographic split) for large holdings).
+
+# Day-to-day practices
+
+1. **Never reveal your seed** to anyone or enter it online.
+2. **Verify URLs and bookmarks** before visiting exchange or wallet sites. 
+3. **Use hardware signing** for significant transactions.
+4. **Keep minimal balance** in hot wallets (only what you need).
+5. **Use unique, strong passwords** and a reputable password manager for non-seed credentials (but *never* store seed there).
+6. **Regularly audit contract approvals** and revoke unused approvals.
+7. **Segregate devices**: Use a dedicated device for key activities (or at minimum limit software installed on the device you use with your wallet).
+8. **Be cautious with browser extensions and unknown dApps.**
+
+# Emergency procedures (if you suspect compromise)
+
+1. **Move funds immediately** from any wallet you control to a fresh wallet (if you can sign safely). For compromised seeds, assume irrecoverable: transfer remaining funds to a new wallet you initialize on a trusted device.
+2. **Revoke allowances** on affected tokens using a reputable revocation tool (if possible before funds are drained).
+3. **Contact exchange support** if custodial account is compromised and provide relevant KYC and incident detail.
+4. **Freeze / notify** counterparties if smart contract multisig involved.
+5. **Report phishing sites** to your browser and to anti-phishing authorities; change passwords for other affected accounts. 
+# Recommended practical setups (by user profile)
+
+1. **Absolute beginner**
+
+   * Use a reputable custodial exchange (small amounts) for learning.
+   * Once confident, buy a hardware wallet and move >20–30% of holdings to cold storage.
+
+2. **Casual user (occasional trading + NFTs)**
+
+   * Hot software wallet for day-to-day activities (small balance).
+   * Hardware wallet for savings and for signing high-value transactions.
+
+3. **Active DeFi user / power user**
+
+   * Hardware wallet + dedicated hot wallet combination; use hardware for signing high-value txs.
+   * Consider a smart-contract wallet with social recovery (e.g., Argent) or multisig (Gnosis Safe) for high value / multi-person control.
+
+4. **Institution / high net worth**
+
+   * Multi-party custody (multisig), professional custodians with insurance, regular audits, strict operational security (air-gapped signing, HSMs).
+
+### Part 4: Testnets & Blockchain Explorers
+## 1. Testnets
+What are Testnets?
+- Testnets are alternative blockchain networks used for testing without risking real assets.
+- They exist so developers and users can experiment safely.
+- They differ from mainnet because tokens have no real-world value, and the network may be unstable.
+
+Popular Testnets
+- Sepolia Testnet (Ethereum): Lightweight, used for testing smart contracts, supported by faucets.
+- Mumbai Testnet (Polygon): Polygon’s major testnet for dApps and contract deployment.
+- Others: Goerli (deprecating), Holesky, BNB Testnet.
+
+# Comparison:
+- Sepolia: Ethereum-focused, stable, widely supported.
+- Mumbai: Polygon-focused, cheaper fees, fast block times.
+- Holesky: Large-scale Ethereum testnet for staking simulations.
+
+# How to Use Testnets
+- Connect via MetaMask by enabling "Show test networks”.
+- Get test tokens from faucets.
+- You can practice sending transactions, deploying smart contracts, interacting with dApps.
+- Limitations: Slow faucets, some features unavailable, occasional instability.
+
+# Hands-On Practice (Guide)
+1. Switch to Sepolia in MetaMask.
+2. Visit a Sepolia faucet (e.g., Alchemy).
+3. Request test ETH.
+4. Send a small test transaction to another wallet.
+2. Blockchain Explorers
+
+## What are Blockchain Explorers?
+- Blockchain explorers are tools for viewing blockchain data in real time.
+- They help verify transactions, view wallet activity, explore smart contracts, and track network status.
+
+# Etherscan Deep Dive:
+- Search for transactions using Tx hash.
+- Transaction details include: block number, gas used, status, fees, sender, receiver.
+- Explore wallets to see balances, tokens, history.
+- View smart contracts, read/write functions, verify source code.
+- Token approvals page helps you revoke risky approvals.
+- Gas tracker shows current gas price levels.
+
+# Other Explorers:
+- Polygonscan (Polygon)
+- BscScan (BNB Chain)
+- Solscan (Solana)
+Use-case varies based on blockchain.
+
+# Practical Use Cases
+- Verify NFT ownership using the token ID on Etherscan.
+- Check transaction status (Pending/Success/Failed).
+- Investigate wallets for transparency.
+- Verify smart contract code before interacting.
+- Track gas prices before sending transactions.
+
+### Part 5; Understanding MEV
+# 1) Understanding MEV — plain language + players
+
+**What is MEV?**
+MEV (Maximal/Maximum Extractable Value) is the extra profit a block producer (miner/validator) or the agents they work with can obtain by choosing which transactions to include in a block and in what order — beyond normal block rewards and base gas fees. In practice MEV is captured by *searchers* (bots/traders), *block builders*, and the *validator/miner* that ultimately proposes the block. 
+
+**What does “Maximal Extractable Value” mean?**
+“Maximal” signals the theoretical top profit available from optimal re-ordering/inclusion/censorship of pending transactions in a single block or sequence of blocks. In practice, actual extracted value depends on competition, mempool visibility, and on-chain activity.
+
+**Who are MEV extractors?**
+
+* **Searchers**: bot traders that scan mempools for profitable orderings (arbitrage, liquidation snipes, sandwich ops).
+* **Builders/Relays**: entities who assemble full blocks optimized for profit (including MEV).
+* **Validators/Miners**: the proposer who chooses (or accepts) a built block and signs it to include on chain.
+  These roles can overlap or be separated (see PBS/MEV-Boost). 
+
+
+# 2) How MEV works — mechanics & common types
+
+**How do validators/miners extract MEV?**
+Searchers submit strategically timed transactions or bids to block builders/relays (sometimes via private channels). Builders put the most profitable bundle into a candidate block and present it to proposers/validators, who may choose it (often via MEV-Boost relays). Because ordering and inclusion are decided when a block is produced, whoever controls that ordering can capture value. 
+
+**Common types of MEV strategies**
+
+* **Arbitrage** (DEX price differences) — benign or utility-providing in some cases.
+* **Liquidation sniping** — capturing liquidation opportunities.
+* **Front-running** — inserting a transaction ahead of a target to profit from a known pending trade.
+* **Back-running** — inserting a follow-up transaction that benefits from the target’s state change.
+* **Sandwich attacks** — classic harmful pattern: a buy before a victim’s trade and a sell immediately after, profiting from the victim’s price impact (worsens victim’s price/slippage).
+* **Censorship / exclusion** — intentionally leaving transactions out or delaying them.
+
+**Front-running / Back-running / Sandwich in short**
+
+* *Front-running*: see a pending tx and place yours ahead (profit from the same price movement).
+* *Back-running*: place a tx immediately after a target to capture the resulting state change (e.g., arbitrage).
+* *Sandwich*: front + victim + back to manufacture profit while harming victim.
+
+
+# 3) Real-world examples & scale
+
+**Famous academic and industry references**
+
+* The MEV problem was crystallized in *“Flash Boys 2.0”* (Daian et al., 2019) which documented frontrunning, reordering, and consensus risks.
+
+**How much value has been extracted?**
+
+* Flashbots’ public analyses (and community summaries) put cumulative on-chain MEV on Ethereum in the order of hundreds of millions of dollars (commonly cited figure: **~$675M** for earlier multi-year windows tracked by Flashbots), though estimates change with scope (on-chain vs off-chain, CEX/DEX linked extraction, rollups, etc.). Newer academic work shows additional large volumes and concentration among top searchers. (MEV totals are actively updated by researchers/tools like mev-inspect and Flashbots dashboards.) 
+
+**Notable incidents & patterns**
+
+* Repeated sandwich attacks and priority gas auction exploitation that harmed retail traders.
+* Concentration of spam/searcher activity on new rollups (Flashbots analysis shows spam/searcher concentration can dominate gas usage on a network). Recent writing from Flashbots shows spam/searcher effects on rollups and the limits of scaling.
+
+# 4) Impact on users
+
+**Transaction costs and fees**
+
+* MEV increases competition for block space: searchers pay high gas or offer block bids, which can raise effective gas/priority fee levels and indirectly increase user costs. Aggressive MEV activity (spam, priority auctions) may push up median fees. 
+
+**Transaction ordering & failures**
+
+* MEV strategies manipulate ordering; that can cause your transaction to execute at worse prices (higher slippage) or to fail if a competitor executes first and changes state. Sandwiches directly worsen trade execution for victims. Censoring searchers or builders can cause long delays or non-inclusion. 
+
+**Effect on DeFi users**
+
+* DeFi users face higher effective costs (slippage, front-run tax), and critical transactions (liquidations, arbitrage windows) can be captured by well-resourced searchers, reducing fairness and sometimes destabilizing markets. 
+
+**MEV and NFTs**
+
+* NFT mints are vulnerable: bots can detect and front-run mint transactions (grab whitelist slots, buy limited supply NFTs) or use gas strategies to push ahead. Creators see bots dominating mints; buyers pay more or miss out. Protective patterns include commit–reveal mints, whitelists with off-chain signatures, queueing, or private transaction submission. 
+
+# 5) Current MEV solutions — what exists now
+
+**Flashbots (private relays / private mempools)**
+
+* Flashbots started as an open RPC/relay system to let searchers send bundles directly to block producers (bypassing public mempools) to reduce harmful public front-running and to make MEV extraction more transparent and auditable. Private relays reduce some public mempool-based front-running. 
+**MEV-Boost and Proposer-Builder Separation (PBS)**
+
+* **MEV-Boost** is the practical system for proposer-builder separation (PBS): builders assemble optimized blocks; proposers choose among builder bids. PBS/MEV-Boost aims to
+* (a) open block building to many builders,
+* (b) democratize MEV revenues, and
+* (c) it reduces per-validator searcher capture — but it also shifts influence to builders/relays and creates new centralization risks that require governance and relay decentralization. 
+
+**Private mempools & committed transactions**
+
+* Private submission (direct to relays/builders) and commit-reveal schemes hide sensitive details until inclusion or force earlier commitments that prevent seeing raw trade intent in the public mempool. These reduce simple mempool sniping. 
+
+**Sequencer / L2 approaches**
+
+* Layer-2 rollups centralize sequencing temporarily; some rollups address MEV with *application-specific ordering* (rules that redistribute MEV or align sequencer incentives), on-chain auctions, or by offering private tx submission to sequencers. That reduces public mempool exposure but can centralize power if not designed carefully. 
+
+# 6) Proposed / emerging solutions & debate
+
+**Proposals in use / research**
+
+* **PBS + diversified relays/builders** — attempt to spread MEV capture away from individual validators.
+* **Fair ordering services** (e.g., Fair Sequencing Services, batch auctions) — collect and order txs more equitably.
+* **Commit-reveal and sealed-bid auctions** — hide intent until inclusion.
+* **Economic penalties or bonding** — disincentivize malicious ordering.
+* **Cryptographic privacy solutions** (zk, threshold encryption, secure enclaves) — prevent mempool visibility until block inclusion. 
+
+**The debate**
+
+* MEV can be *useful* (arbitrage keeps DEX prices consistent) but also *harmful* (sandwiching, censorship, consensus instability). Solutions typically trade off transparency, decentralization, and latency. PBS/MEV-Boost reduces some harms but creates builder-centralization risks; full cryptographic privacy is promising but complex. Researchers and practitioners argue whether MEV should be taxed/redistributed to users or captured competitively. 
+
+# 7) Practical advice — what users and developers can do now
+
+**For users (quick wins):**
+
+* Use wallets/services that support **private tx submission** or Flashbots-style bundles for big trades. 
+* Set conservative **slippage** and gas allowances; for sensitive mints or trades consider honeypots (commit-reveal style) or using platforms that batch or queue transactions. 
+
+**For dApp creators / devs:**
+
+* Use **commit-reveal** for sensitive actions (NFT mints, on-chain votes). 
+* Consider **private relays**, signature-based whitelists, randomized ordering, or application-specific sequencing to reduce mempool exposure. 
+* Design economic incentives that align sequencer/builder behavior (fee distribution, slashing, or bonding) and audit for MEV-sensitive codepaths (avoid predictable state changes). 
+
 
 
 # References and Further Reading
