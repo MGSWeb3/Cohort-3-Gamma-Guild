@@ -1,0 +1,175 @@
+Week 1 — Day 2: Blockchain infrastructure, distributed ledgers, NFTs & tokens
+
+(Deliverable prepared for submission — copy/paste into your report)
+
+1) Quick summary (TL;DR)
+
+Blockchains are a class of distributed ledger technologies (DLT) that organize transactions into cryptographically-linked blocks; many blockchains are public and permissionless while some DLTs are permissioned and do not use token economics. 
+
+I researched 5 networks (Bitcoin, Ethereum, Solana, Polkadot, Hyperledger Fabric/Flow), documenting node roles, clients, and consensus mechanisms. 
+
+NFTs are unique tokens (non-fungible) used for digital ownership (art, collectibles, gaming); fungible tokens (ERC-20 / SPL / equivalent) represent interchangeable units (currencies, stablecoins, governance tokens). Real-world examples below. 
+
+
+
+---
+
+2) Research: 5 blockchains — nodes, clients, consensus (concise profiles)
+
+Bitcoin (public, permissionless)
+
+Node roles: full nodes (validate blocks/transactions), SPV/light clients (wallets).
+
+Clients/implementations: Bitcoin Core is the reference client; others exist but Bitcoin Core is dominant. 
+
+Consensus mechanism: Proof of Work (PoW) — miners solve computational puzzles to propose blocks; network accepts longest valid chain (most cumulative PoW). 
+
+
+Ethereum (public, now PoS after The Merge)
+
+Node roles: Execution clients and Consensus/Beacon nodes (post-Merge separation); validators run consensus clients to propose/finalize blocks; light and archive nodes exist.
+
+Clients/implementations: Execution: Geth, Besu, Nethermind; Consensus: Prysm, Lighthouse, Teku, Nimbus (examples). 
+
+Consensus mechanism: Proof of Stake (PoS) with validator set and slashing for misbehavior (after The Merge). 
+
+
+Solana (high-throughput public chain)
+
+Node roles: Validators (process transactions / participate in consensus), RPC nodes (APIs for apps), light clients. 
+
+Clients/implementations: Solana validator software (officially maintained); nodes run validator and RPC services. 
+
+Consensus mechanism: Hybrid Proof-of-History (PoH) (a timestamping technique) combined with Proof-of-Stake (PoS) for leader selection and confirmation — designed for high TPS. 
+
+
+Polkadot (heterogeneous multi-chain)
+
+Node roles: Relay-chain validators (secure and finalize the relay chain), collators (produce parachain blocks), nominators (stake to support validators). 
+
+Clients/implementations: Parity’s Polkadot client (main), plus other nodes running Substrate-based runtimes. 
+
+Consensus mechanism: Hybrid: BABE for block production (probabilistic) + GRANDPA for finality (fast provable finality); staking for security. 
+
+
+Hyperledger Fabric (permissioned DLT for enterprises)
+
+Node roles: peers (endorse and commit transactions), orderers (sequence/ordering service), certificate authorities (identity mgmt). Peers maintain ledgers and chaincode/smart contracts. 
+
+Clients/implementations: Fabric SDKs (Go/Node/Java) and the Fabric peer/orderer binaries. Many deployments use enterprise distributions. 
+
+Consensus mechanism: Pluggable — commonly crash-fault tolerant (CFT) or Byzantine fault tolerant (BFT) orderers; no native token required (suits permissioned enterprise use). 
+
+
+
+---
+
+3) Comparison: Distributed Ledger Technology (DLT) vs Blockchain (short, sharp)
+
+Parent / child: DLT is the general concept of a distributed ledger; blockchains are a specific DLT design that orders transactions into blocks linked by cryptographic hashes. 
+
+Structure: DLT may not use blocks or need global chaining; blockchain uses chained blocks. 
+
+Permission model: DLTs can be permissioned (Hyperledger Fabric) for known participants; many blockchains are permissionless (Bitcoin, Ethereum). 
+
+Token requirement: Blockchains powering crypto typically have tokens (for incentives, fees); permissioned DLTs may operate without native tokens. 
+
+Use cases: DLTs (permissioned) → enterprise consortia, supply chain, regulated asset registries; blockchains → public money, open finance, public NFTs, token economies. 
+
+
+
+---
+
+4) NFTs vs Fungible Tokens — Concepts then 7 real examples (analysis + real-world notes)
+
+Concepts (brief)
+
+NFTs (non-fungible tokens): Unique identifiers on a ledger representing ownership of a distinct asset (digital art, collectibles, game items). Standards: ERC-721, ERC-1155 (Ethereum), equivalents on other chains (Flow, Tezos, Solana SPL-NFT patterns). 
+
+Fungible tokens: Interchangeable units (like currency shares). Standards: ERC-20 on Ethereum, SPL tokens on Solana, BEP-20 on BSC, etc. Used for stablecoins, governance, utility tokens. 
+
+
+Real-world examples (each with a short analysis)
+
+1. Bored Ape Yacht Club (BAYC) — Ethereum (ERC-721)
+
+High-profile PFP NFT collection; ownership confers community access & IP perks; shows how NFTs create social/branding value beyond the image. BAYC leveraged Ethereum’s ERC-721 standard and secondary market dynamics. 
+
+
+
+2. NBA Top Shot — Flow (NFTs for moments)
+
+Flow (by Dapper Labs) was built to scale collectibles (Top Shot). Top Shot sells licensed NBA "moments" as NFTs; demonstrates licensing + collectible economy on a chain optimized for consumer apps. 
+
+
+
+3. CryptoKitties — Ethereum (early NFT app)
+
+Early popular on-chain game that congested Ethereum in 2017; shows NFTs' ability to create viral demand and exposes scalability limits of a blockchain. 
+
+
+
+4. Axie Infinity — NFTs + fungible in gaming economy
+
+Combines NFTs (Axies) with fungible tokens (SLP, AXS). Demonstrates play-to-earn economic risks/rewards; the project’s boom and later issues (market collapse + large hack) highlight economic fragility and security risks in token economies. 
+
+
+
+5. USDC (USD Coin) — fungible stablecoin (ERC-20 / multi-chain)
+
+A widely used fungible stablecoin representing USD, used for payments, DeFi, and cross-chain settlement. It’s issued by Circle and runs on Ethereum and other chains (illustrates fungible token utility vs NFT uniqueness). 
+
+
+
+6. RealT — tokenized real-estate (fractional ownership using fungible tokens)
+
+RealT issues tokens representing fractional ownership or economic interest in real properties (on Ethereum). Example of tokenization of real-world assets (RWA). Raises legal & compliance questions (how token = legal ownership). 
+
+
+
+7. SPL Tokens on Solana (e.g., SOL & USDC on Solana)
+
+Solana’s SPL token standard supports fungible tokens (e.g., wrapped USD-stablecoins, project tokens). Demonstrates how high-throughput chains host fungible economies and NFTs. 
+
+
+
+
+
+---
+
+5) Comparison tables
+
+Table A — Blockchains: nodes / clients / consensus (concise)
+
+Network	Node roles (brief)	Example clients / software	Consensus
+
+Bitcoin	Full nodes, miners, light clients	Bitcoin Core (reference)	Proof-of-Work (PoW) (mining, longest valid chain). 
+Ethereum	Execution nodes, consensus (beacon) nodes, validators	Geth, Besu (execution); Prysm, Lighthouse, Teku (consensus).	Proof-of-Stake (PoS) validators (post-Merge). 
+Solana	Validators, RPC nodes	Solana validator binary / official stack	PoH (timestamping) + PoS leader selection (high-TPS design). 
+Polkadot	Relay validators, collators, nominators	Parity Polkadot client (Substrate)	BABE (block production) + GRANDPA (finality); PoS staking. 
+Hyperledger Fabric	Peers, orderers, CAs	Fabric peer/orderer binaries; Fabric SDKs	Pluggable (CFT/BFT options); permissioned; no native token required. 
+
+
+Table B — Tokens / NFTs: examples & key notes
+
+Example	Type	Chain / Standard	Why it matters (short)
+
+BAYC	NFT (ERC-721)	Ethereum	Cultural/status asset; shows IP & community utility. 
+NBA Top Shot	NFT (Flow)	Flow	Licensed sports collectibles at scale; Flow built for consumer UX. 
+CryptoKitties	NFT	Ethereum	Early NFT viral case; demonstrated congestion risk. 
+Axie Infinity	NFT + fungible tokens (AXS, SLP)	Ethereum / Ronin	Example of complex gaming economy & market risk. 
+USDC	Fungible stablecoin (ERC-20)	Multi-chain (Ethereum primary)	Real-world pegged value; payments & DeFi backbone. 
+RealT tokens	Fungible tokens (security/asset tokens)	Ethereum (ERC-20 variants)	Real-asset fractional ownership; legal structuring required. 
+SPL tokens (USDC on Solana)	Fungible tokens	Solana SPL	Example of high-TPS fungible token use case. 
+
+
+
+---
+
+6) Risks, tradeoffs & practical notes (short)
+
+Scalability vs decentralization: High-TPS chains (Solana, special layer-2s) trade some decentralization/design choices for throughput. Ethereum’s transition to PoS changed node client architecture and validator economics. 
+
+Security & economic risks: Token economies (Axie, play-to-earn) can create fragile markets; smart contract hacks and bridges remain major attack vectors. 
+
+Legal & compliance: Tokenizing real assets (RealT) requires careful legal structuring — tokens often represent contractual rights rather than automatic legal title
