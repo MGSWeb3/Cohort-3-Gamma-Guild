@@ -797,6 +797,23 @@ A testnet is a blockchain network that mirrors mainnet behavior but uses valuele
 - Practice deployments, transfers, approvals.
 - Limitations: faucet limits, instability, lower security.
 
+#### Hands-On Practice
+My journey into hands-on blockchain interaction began with setting up MetaMask, a browser extension wallet that serves as the gateway to Web3. After installing MetaMask, I created a new wallet by setting a secure password and carefully writing down my 12-word Secret Recovery Phrase on paper. This phrase is critical—it's the only way to recover my wallet if I lose access, so I stored it safely offline.
+
+Initially, my MetaMask wallet was connected to Ethereum Mainnet with a balance of 0 ETH (see Joshua-Awolaye-Hands-On Practice 1.png). To practice safely without using real money, I needed to switch to a testnet. I manually added the Sepolia testnet by entering its network details: the RPC URL, Chain ID (11155111), and block explorer address. Once configured, I switched from Ethereum Mainnet to Sepolia, and my wallet interface updated to show "Sepolia" as the active network (Joshua-Awolaye-Hands-On Practice 2.png).
+
+With my wallet ready, I needed test ETH to make transactions. I navigated to the Google Cloud Web3 Faucet, signed in with my Google account, and pasted my wallet address into the faucet interface (see Joshua-Awolaye-Hands-On Practice 3.png). After selecting Sepolia as the network and clicking the request button, the faucet confirmed that 0.05 SepoliaETH had been sent to my address (see Joshua-Awolaye-Hands-On Practice 4.png). Within a minute, I refreshed my MetaMask wallet and saw my balance update to 0.0500 SepoliaETH (see Joshua-Awolaye-Hands-On Practice 5.png). Even though it has no monetary value, seeing that balance appear felt significant.
+
+To execute my first transaction, I created a second account within MetaMask called "Account 2" and copied its address. Switching back to Account 1, I clicked the "Send" button and entered Account 2's address as the recipient. I chose to send 0.01 SepoliaETH, leaving enough balance for future practice (see Joshua-Awolaye-Hands-On Practice 6.png). MetaMask then displayed a review screen showing detailed transaction parameters including the network, network fee (gas), speed, max fee, and nonce (see Joshua-Awolaye-Hands-On Practice 7.png). After verifying everything was correct, I clicked "Confirm."
+
+The transaction was broadcast to the Sepolia network, and within seconds, MetaMask showed a confirmation that 0.01 SepoliaETH had been sent successfully (see Joshua-Awolaye-Hands-On Practice 8.png). I clicked on the transaction to view more details, including the gas breakdown: max fee per gas, gas used, base fee, priority fee, and total gas fee (see Joshua-Awolaye-Hands-On Practice 9.png). MetaMask also provided a "View on block explorer" button, which I clicked to see my transaction on Sepolia Etherscan.
+
+On Etherscan, I could see the complete public record of my transaction: the transaction hash, status (Success), block number, timestamp, sender and receiver addresses, amount transferred, and all gas-related details (see Joshua-Awolaye-Hands-On Practice 10.png). This transparency demonstrated the immutable and publicly auditable nature of blockchain transactions. Finally, I checked my MetaMask balance, which now reflected the deduction of both the 0.01 SepoliaETH I sent and the small gas fee I paid (see Joshua-Awolaye-Hands-On Practice 11.png).
+
+This hands-on experience taught me several important lessons. First, testnets provide a risk-free environment to learn blockchain fundamentals without financial consequences. Second, every transaction has a cost (gas fees) even on testnets, which made me understand why gas optimization matters on mainnet where fees can be expensive. Third, blockchain transparency means anyone can verify transactions using block explorers like Etherscan, which is powerful for accountability and trust.
+
+Most importantly, I gained practical confidence in wallet management, network switching, and transaction execution. This firsthand experience enables me to write more accurate tutorials, explain concepts clearly to non-technical audiences, and understand the user experience challenges that newcomers face. What initially seemed complex—wallet addresses, gas fees, transaction hashes—now feels accessible and manageable.
+
 ### Blockchain Explorers
 
 #### What are Blockchain Explorers?
@@ -1027,7 +1044,7 @@ Anti-MEV Arguments:
 
 ## Part 6: Transaction Analysis
 
-📖 See your separate transaction analysis document: `Joshua-Awolaye-transaction-analysis.md`
+📖 See my separate transaction analysis document: `Joshua-Awolaye-transaction-analysis.md`
 
 ---
 
